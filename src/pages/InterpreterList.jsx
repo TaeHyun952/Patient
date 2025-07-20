@@ -20,53 +20,53 @@ const InterpreterList = () => {
   const detailedInterpreters = [
     {
       id: 1,
-      name: '김영수',
-      languages: ['영어', '중국어'],
+      name: 'Kim Young-soo',
+      languages: ['English', 'Chinese'],
       rating: 4.9,
       reviewCount: 156,
-      experience: '5년',
-      specialization: ['의료통역', '비즈니스'],
-      certifications: ['TOPIK 6급', 'HSK 6급', '의료통역사 자격증'],
-      availability: '즉시 가능',
+      experience: '5 years',
+      specialization: ['Medical Interpretation', 'Business'],
+      certifications: ['TOPIK Level 6', 'HSK Level 6', 'Medical Interpreter Certification'],
+      availability: 'Available Now',
       hourlyRate: 25000,
       photo: '/api/placeholder/80/80',
       recentReviews: [
-        { rating: 5, comment: '매우 전문적이고 정확한 통역이었습니다.', date: '2024-01-15' },
-        { rating: 5, comment: '의료진과 원활한 소통을 도와주셨어요.', date: '2024-01-10' }
+        { rating: 5, comment: 'Very professional and accurate interpretation.', date: '2024-01-15' },
+        { rating: 5, comment: 'Helped facilitate smooth communication with medical staff.', date: '2024-01-10' }
       ]
     },
     {
       id: 2,
-      name: '이민정',
-      languages: ['일본어', '러시아어'],
+      name: 'Lee Min-jung',
+      languages: ['Japanese', 'Russian'],
       rating: 4.7,
       reviewCount: 89,
-      experience: '3년',
-      specialization: ['의료통역', '관광'],
-      certifications: ['JLPT N1', '러시아어능력검정 1급'],
-      availability: '2시간 후',
+      experience: '3 years',
+      specialization: ['Medical Interpretation', 'Tourism'],
+      certifications: ['JLPT N1', 'Russian Language Proficiency Test Level 1'],
+      availability: 'Available in 2 hours',
       hourlyRate: 22000,
       photo: '/api/placeholder/80/80',
       recentReviews: [
-        { rating: 5, comment: '친절하고 세심한 통역 서비스였습니다.', date: '2024-01-12' },
-        { rating: 4, comment: '전문 용어도 정확하게 통역해주셨어요.', date: '2024-01-08' }
+        { rating: 5, comment: 'Kind and attentive interpretation service.', date: '2024-01-12' },
+        { rating: 4, comment: 'Accurately interpreted technical terms as well.', date: '2024-01-08' }
       ]
     },
     {
       id: 3,
-      name: '박준호',
-      languages: ['영어', '독일어'],
+      name: 'Park Jun-ho',
+      languages: ['English', 'German'],
       rating: 4.8,
       reviewCount: 203,
-      experience: '7년',
-      specialization: ['의료통역', '법률', '기술'],
-      certifications: ['TOEIC 990점', 'TestDaF 5급', '법정통역사 자격증'],
-      availability: '1시간 후',
+      experience: '7 years',
+      specialization: ['Medical Interpretation', 'Legal', 'Technical'],
+      certifications: ['TOEIC 990 points', 'TestDaF Level 5', 'Court Interpreter Certification'],
+      availability: 'Available in 1 hour',
       hourlyRate: 28000,
       photo: '/api/placeholder/80/80',
       recentReviews: [
-        { rating: 5, comment: '경험이 풍부하시고 매우 신뢰할 수 있어요.', date: '2024-01-14' },
-        { rating: 5, comment: '복잡한 의료 상담도 완벽하게 통역해주셨습니다.', date: '2024-01-11' }
+        { rating: 5, comment: 'Very experienced and highly reliable.', date: '2024-01-14' },
+        { rating: 5, comment: 'Perfectly interpreted even complex medical consultations.', date: '2024-01-11' }
       ]
     }
   ];
@@ -104,18 +104,18 @@ const InterpreterList = () => {
             className="back-button"
           >
             <ArrowLeft size={16} />
-            병원 목록으로
+            Back to Hospitals
           </Button>
           <div className="header-content">
-            <h1>{hospital.name} 통역사</h1>
+            <h1>{hospital.name} Interpreters</h1>
             {selectedProcedure ? (
-              <p>{selectedProcedure.name} 시술을 위한 전문 통역사들을 확인하고 예약하세요</p>
+              <p>Check and book professional interpreters for {selectedProcedure.name} procedure</p>
             ) : (
-              <p>병원에 배치된 전문 통역사들을 확인하고 예약하세요</p>
+              <p>Check and book professional interpreters assigned to the hospital</p>
             )}
             {selectedProcedure && (
               <div className="procedure-context">
-                <span className="context-label">선택된 시술:</span>
+                <span className="context-label">Selected Procedure:</span>
                 <span className="context-value">{selectedProcedure.name}</span>
               </div>
             )}
@@ -134,7 +134,7 @@ const InterpreterList = () => {
                 </div>
                 <div className="stat">
                   <Clock size={16} />
-                  <span>대기시간 {hospital.waitTime}</span>
+                  <span>Wait Time {hospital.waitTime}</span>
                 </div>
               </div>
             </div>
@@ -162,13 +162,13 @@ const InterpreterList = () => {
                 </div>
                 <div className="interpreter-status">
                   <Badge 
-                    type={interpreter.availability === '즉시 가능' ? 'success' : 'warning'}
+                    type={interpreter.availability === 'Available Now' ? 'success' : 'warning'}
                     size="small"
                   >
                     {interpreter.availability}
                   </Badge>
                   <div className="hourly-rate">
-                    {interpreter.hourlyRate.toLocaleString()}원/시간
+                    {interpreter.hourlyRate.toLocaleString()} KRW/hour
                   </div>
                 </div>
               </div>
@@ -176,11 +176,11 @@ const InterpreterList = () => {
               <div className="interpreter-details">
                 <div className="experience">
                   <Award size={16} />
-                  <span>경력 {interpreter.experience}</span>
+                  <span>Experience {interpreter.experience}</span>
                 </div>
                 
                 <div className="specializations">
-                  <h4>전문 분야</h4>
+                  <h4>Specializations</h4>
                   <div className="spec-tags">
                     {interpreter.specialization.map((spec, index) => (
                       <Badge key={index} type="secondary" size="small">
@@ -191,21 +191,21 @@ const InterpreterList = () => {
                 </div>
 
                 <div className="certifications">
-                  <h4>자격증</h4>
+                  <h4>Certifications</h4>
                   <div className="cert-list">
                     {interpreter.certifications.slice(0, 2).map((cert, index) => (
                       <span key={index} className="cert-item">{cert}</span>
                     ))}
                     {interpreter.certifications.length > 2 && (
                       <span className="more-certs">
-                        +{interpreter.certifications.length - 2}개
+                        +{interpreter.certifications.length - 2} more
                       </span>
                     )}
                   </div>
                 </div>
 
                 <div className="recent-reviews">
-                  <h4>최근 리뷰</h4>
+                  <h4>Recent Reviews</h4>
                   <div className="review-preview">
                     {interpreter.recentReviews[0] && (
                       <div className="review-item">
@@ -226,14 +226,14 @@ const InterpreterList = () => {
                   variant="outline" 
                   onClick={() => handleViewProfile(interpreter)}
                 >
-                  프로필 보기
+                  View Profile
                 </Button>
                 <Button 
                   variant="primary" 
                   onClick={() => handleBookInterpreter(interpreter)}
                 >
                   <Calendar size={16} />
-                  예약하기
+                  Book Now
                 </Button>
               </div>
             </Card>

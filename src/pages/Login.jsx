@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Button from '../components/Button'
 import FormField from '../components/FormField'
 import '../styles/pages/Login.css'
 
 const Login = ({ setCurrentUser }) => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // 실제 로그인 로직 추가 (API 호출 등)
-    alert(`이메일: ${email}\n비밀번호: ${password} (으)로 로그인 시도`);
+    // Add actual login logic here (API calls, etc.)
+    alert(`Email: ${email}\nPassword: ${password} - Login attempt`);
     setCurrentUser({
-      name: '김통역',
+      name: 'Patient Kim',
       email: email,
       phone: '010-1234-5678',
       status: 'online'
@@ -24,10 +26,10 @@ const Login = ({ setCurrentUser }) => {
   return (
     <div className="login">
       <div className="container">
-        <h1>로그인</h1>
+        <h1>{t('Login')}</h1>
         <form className="form" onSubmit={handleLogin}>
           <div className="form-group">
-            <label htmlFor="email">이메일</label>
+            <label htmlFor="email">{t('Email')}</label>
             <input
               type="email"
               id="email"
@@ -37,7 +39,7 @@ const Login = ({ setCurrentUser }) => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">비밀번호</label>
+            <label htmlFor="password">{t('Password')}</label>
             <input
               type="password"
               id="password"
@@ -47,11 +49,11 @@ const Login = ({ setCurrentUser }) => {
             />
           </div>
           <button type="submit" className="btn-primary">
-            로그인
+            {t('Login')}
           </button>
         </form>
         <div className="signup-link">
-          <p>계정이 없으신가요? <Link to="/signup">회원가입</Link></p>
+          <p>{t('Don\'t have an account?')} <Link to="/signup">{t('Sign Up')}</Link></p>
         </div>
       </div>
     </div>

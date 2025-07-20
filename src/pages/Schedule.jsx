@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Calendar, Clock, MapPin, Phone, Edit, Star } from 'lucide-react'
 import Card from '../components/Card'
 import Button from '../components/Button'
@@ -7,6 +8,7 @@ import Badge from '../components/Badge'
 import '../styles/pages/Schedule.css'
 
 const Schedule = () => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [activeStatus, setActiveStatus] = useState('all')
   const [bookings, setBookings] = useState([])
@@ -17,65 +19,65 @@ const Schedule = () => {
       date: '2024-01-22',
       time: '09:00',
       status: 'upcoming',
-      hospital: '서울대학교병원',
-      department: '안과',
-      doctor: '김안과 교수',
-      procedure: '백내장 수술 상담',
-      location: '본관 3층 301호',
-      notes: '수술 전 상담 및 검사 결과 설명',
-      languageSupport: '언어 지원 요청 (영어)'
+      hospital: 'Seoul National University Hospital',
+      department: 'Ophthalmology',
+      doctor: 'Dr. Kim, Ophthalmologist',
+      procedure: 'Cataract Surgery Consultation',
+      location: 'Main Building 3rd Floor, Room 301',
+      notes: 'Pre-surgery consultation and examination results explanation',
+      languageSupport: 'Language support requested (English)'
     },
     {
       id: 2,
       date: '2024-01-25',
       time: '14:00',
       status: 'upcoming',
-      hospital: '삼성서울병원',
-      department: '내과',
-      doctor: '이내과 전문의',
-      procedure: '정기 건강검진',
-      location: '건강증진센터 2층',
-      notes: '연간 종합검진 예약',
-      languageSupport: '언어 지원 불필요'
+      hospital: 'Samsung Medical Center',
+      department: 'Internal Medicine',
+      doctor: 'Dr. Lee, Internal Medicine Specialist',
+      procedure: 'Regular Health Checkup',
+      location: 'Health Promotion Center 2nd Floor',
+      notes: 'Annual comprehensive health examination appointment',
+      languageSupport: 'No language support needed'
     },
     {
       id: 3,
       date: '2024-01-15',
       time: '10:00',
       status: 'completed',
-      hospital: '아산병원',
-      department: '정형외과',
-      doctor: '박정형외과 교수',
-      procedure: '무릎 검사',
-      location: '정형외과 외래 1층',
-      notes: '무릎 통증 검사 완료',
-      languageSupport: '언어 지원 불필요'
+      hospital: 'Asan Medical Center',
+      department: 'Orthopedics',
+      doctor: 'Prof. Park, Orthopedic Surgeon',
+      procedure: 'Knee Examination',
+      location: 'Orthopedics Outpatient 1st Floor',
+      notes: 'Knee pain examination completed',
+      languageSupport: 'No language support needed'
     },
     {
       id: 4,
       date: '2024-01-18',
       time: '15:30',
       status: 'completed',
-      hospital: '연세세브란스병원',
-      department: '심장내과',
-      doctor: '최심장내과 전문의',
-      procedure: '심전도 검사',
-      location: '심장내과 5층',
-      notes: '심전도 검사 및 상담 완료',
-      languageSupport: '언어 지원 요청 (중국어)'
+      hospital: 'Yonsei Severance Hospital',
+      department: 'Cardiology',
+      doctor: 'Dr. Choi, Cardiology Specialist',
+      procedure: 'Electrocardiogram (ECG)',
+      location: 'Cardiology 5th Floor',
+      notes: 'ECG examination and consultation completed',
+      languageSupport: 'Language support requested (Chinese)'
     },
     {
       id: 5,
       date: '2024-01-12',
       time: '11:00',
       status: 'cancelled',
-      hospital: '강남세브란스병원',
-      department: '내과',
-      doctor: '정내과 전문의',
-      procedure: '위내시경 검사',
-      location: '소화기내과 3층',
-      notes: '개인 사정으로 취소',
-      languageSupport: '언어 지원 불필요'
+      hospital: 'Gangnam Severance Hospital',
+      department: 'Internal Medicine',
+      doctor: 'Dr. Jung, Internal Medicine Specialist',
+      procedure: 'Gastroscopy Examination',
+      location: 'Gastroenterology 3rd Floor',
+      notes: 'Cancelled due to personal reasons',
+      languageSupport: 'No language support needed'
     }
   ]
 
@@ -95,21 +97,21 @@ const Schedule = () => {
     setActiveStatus(status)
   }
 
-  const formatDateKorean = (dateString) => {
+  const formatDateEnglish = (dateString) => {
     const date = new Date(dateString)
     const month = date.getMonth() + 1
     const day = date.getDate()
-    const dayNames = ['일', '월', '화', '수', '목', '금', '토']
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     const dayName = dayNames[date.getDay()]
-    return `${month}월 ${day}일 (${dayName})`
+    return `${month}/${day} (${dayName})`
   }
 
 
-  const getStatusKoreanName = (status) => {
+  const getStatusName = (status) => {
     const names = {
-      'upcoming': '예정',
-      'completed': '완료',
-      'cancelled': '취소'
+      'upcoming': t('Scheduled'),
+      'completed': t('Completed'),
+      'cancelled': t('Cancelled')
     }
     return names[status] || status
   }
@@ -136,38 +138,38 @@ const Schedule = () => {
   return (
     <div className="schedule">
       <div className="container">
-        <h1>나의 예약 내역</h1>
+        <h1>{t('My Appointment History')}</h1>
         
         <div className="patient-info">
           <div className="patient-summary">
-            <h2>👤 김환자님의 예약 현황</h2>
+            <h2>👤 Patient Kim's {t('Appointment Status')}</h2>
             <div className="stats-grid">
               <div className="stat-card total">
                 <div className="stat-icon">📊</div>
                 <div className="stat-content">
                   <span className="stat-number">{statusCounts.all}</span>
-                  <span className="stat-label">전체 예약</span>
+                  <span className="stat-label">{t('Total Appointments')}</span>
                 </div>
               </div>
               <div className="stat-card upcoming">
                 <div className="stat-icon">⏰</div>
                 <div className="stat-content">
                   <span className="stat-number">{statusCounts.upcoming}</span>
-                  <span className="stat-label">예정된 예약</span>
+                  <span className="stat-label">{t('Scheduled Appointments')}</span>
                 </div>
               </div>
               <div className="stat-card completed">
                 <div className="stat-icon">✅</div>
                 <div className="stat-content">
                   <span className="stat-number">{statusCounts.completed}</span>
-                  <span className="stat-label">완료된 예약</span>
+                  <span className="stat-label">{t('Completed Appointments')}</span>
                 </div>
               </div>
               <div className="stat-card cancelled">
                 <div className="stat-icon">❌</div>
                 <div className="stat-content">
                   <span className="stat-number">{statusCounts.cancelled}</span>
-                  <span className="stat-label">취소된 예약</span>
+                  <span className="stat-label">{t('Cancelled Appointments')}</span>
                 </div>
               </div>
             </div>
@@ -177,13 +179,13 @@ const Schedule = () => {
         <div className="appointments-section">
           
           <div className="appointment-status-filter">
-            <h3>예약 상태별 조회</h3>
+            <h3>{t('Appointment Status')}</h3>
             <div className="status-tabs">
               {[
-                { key: 'all', label: '전체', count: statusCounts.all },
-                { key: 'upcoming', label: '예정', count: statusCounts.upcoming },
-                { key: 'completed', label: '완료', count: statusCounts.completed },
-                { key: 'cancelled', label: '취소', count: statusCounts.cancelled }
+                { key: 'all', label: t('All'), count: statusCounts.all },
+                { key: 'upcoming', label: t('Scheduled'), count: statusCounts.upcoming },
+                { key: 'completed', label: t('Completed'), count: statusCounts.completed },
+                { key: 'cancelled', label: t('Cancelled'), count: statusCounts.cancelled }
               ].map(tab => (
                 <button
                   key={tab.key}
@@ -198,7 +200,7 @@ const Schedule = () => {
           
           <div className="appointments-list">
             {bookings.length === 0 ? (
-              <p className="no-data">해당 상태의 예약이 없습니다.</p>
+              <p className="no-data">{t('No appointments found')}</p>
             ) : (
               bookings.map(appointment => (
                 <div key={appointment.id} className="appointment-item">
@@ -206,11 +208,11 @@ const Schedule = () => {
                     <div className="appointment-header">
                       <h4>{appointment.hospital} - {appointment.department}</h4>
                       <span className={`appointment-status ${appointment.status}`}>
-                        {getStatusKoreanName(appointment.status)}
+                        {getStatusName(appointment.status)}
                       </span>
                     </div>
                     <div className="appointment-details">
-                      <p><Calendar size={16} /> {formatDateKorean(appointment.date)} {appointment.time}</p>
+                      <p><Calendar size={16} /> {formatDateEnglish(appointment.date)} {appointment.time}</p>
                       <p>👨‍⚕️ {appointment.doctor}</p>
                       <p>🏥 {appointment.procedure}</p>
                       <p><MapPin size={14} /> {appointment.location}</p>
@@ -223,14 +225,14 @@ const Schedule = () => {
                       className="btn-secondary"
                       onClick={() => viewDetails(appointment.id)}
                     >
-                      상세보기
+                      {t('View Details')}
                     </button>
                     {appointment.status === 'upcoming' && (
                       <button 
                         className="btn-edit"
                         onClick={() => editBooking(appointment.id)}
                       >
-                        <Edit size={16} /> 예약 수정
+                        <Edit size={16} /> {t('Edit')}
                       </button>
                     )}
                     {appointment.status === 'completed' && (
@@ -238,7 +240,7 @@ const Schedule = () => {
                         className="btn-add"
                         onClick={() => writeReview(appointment.id)}
                       >
-                        <Star size={16} /> 후기 작성
+                        <Star size={16} /> {t('Write Review')}
                       </button>
                     )}
                   </div>

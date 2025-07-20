@@ -1,30 +1,30 @@
-# 통역사 병원 매칭 앱
+# Hospital Interpreter Matching App
 
-병원과 통역사를 매칭해주는 웹 애플리케이션입니다.
+A web application that matches hospitals with interpreters.
 
-## 기능
+## Features
 
-- **회원가입 및 자격증 검증**: 통역사 정보 입력 및 언어 자격증 업로드
-- **예약 내역 관리**: 주간 캘린더로 일정 확인 및 시급 정보 조회
-- **프로필 관리**: 경력, 자격증, 리뷰 관리
-- **신청 완료**: 예약 확정 및 수입 정보 확인
+- **Registration and Certification Verification**: Interpreter information entry and language certificate upload
+- **Appointment Management**: Weekly calendar for schedule checking and hourly rate information
+- **Profile Management**: Experience, certificates, and review management
+- **Application Completion**: Appointment confirmation and income information checking
 
-## 실행 방법
+## How to Run
 
-1. `index.html` 파일을 웹 브라우저에서 열기
-2. 각 페이지 간 이동은 상단 네비게이션 또는 하단 버튼 사용
+1. Open the `index.html` file in a web browser
+2. Navigate between pages using the top navigation or bottom buttons
 
-## 파일 구조
+## File Structure
 
-- `index.html` - 메인 HTML 파일
-- `styles.css` - 스타일시트
-- `script.js` - JavaScript 기능
+- `index.html` - Main HTML file
+- `styles.css` - Stylesheet
+- `script.js` - JavaScript functionality
 
-## 브라우저 지원
+## Browser Support
 
-- Chrome, Firefox, Safari, Edge 등 모든 모던 브라우저
-- 모바일 반응형 디자인 지원
+- All modern browsers including Chrome, Firefox, Safari, Edge
+- Mobile responsive design support
 
-## 개발자
+## Developer
 
-Claude Code로 개발됨
+Developed with Claude Code

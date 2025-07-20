@@ -7,58 +7,94 @@ import { Heart, Eye, Zap, Scissors, Smile, Shield, Search } from 'lucide-react';
 import '../styles/pages/Dashboard.css';
 
 const Dashboard = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
 
   const procedures = [
     {
-      id: 1, key: 'rhinoplasty', category: 'plastic', department: '성형외과',
-      icon: <Smile size={32} />, estimatedTime: '2-3시간', price: '300만원~', popularity: 95
+      id: 1, key: 'rhinoplasty', category: 'plastic', 
+      icon: <Smile size={32} />, 
+      estimatedTime: { ko: '2-3 hours', en: '2-3 hours' }, 
+      price: { ko: '$2,500~', en: '$2,500~' }, 
+      popularity: 95
     },
     {
-      id: 2, key: 'blepharoplasty', category: 'plastic', department: '성형외과',
-      icon: <Eye size={32} />, estimatedTime: '1-2시간', price: '150만원~', popularity: 92
+      id: 2, key: 'blepharoplasty', category: 'plastic', 
+      icon: <Eye size={32} />, 
+      estimatedTime: { ko: '1-2 hours', en: '1-2 hours' }, 
+      price: { ko: '$1,200~', en: '$1,200~' }, 
+      popularity: 92
     },
     {
-      id: 3, key: 'botox', category: 'derma', department: '피부과',
-      icon: <Shield size={32} />, estimatedTime: '30분', price: '20만원~', popularity: 88
+      id: 3, key: 'botox', category: 'derma', 
+      icon: <Shield size={32} />, 
+      estimatedTime: { ko: '30 minutes', en: '30 minutes' }, 
+      price: { ko: '$150~', en: '$150~' }, 
+      popularity: 88
     },
     {
-      id: 4, key: 'filler', category: 'derma', department: '피부과',
-      icon: <Heart size={32} />, estimatedTime: '30분-1시간', price: '30만원~', popularity: 85
+      id: 4, key: 'filler', category: 'derma', 
+      icon: <Heart size={32} />, 
+      estimatedTime: { ko: '30 min-1 hour', en: '30 min-1 hour' }, 
+      price: { ko: '$250~', en: '$250~' }, 
+      popularity: 85
     },
     {
-      id: 5, key: 'lasik', category: 'eye', department: '안과',
-      icon: <Eye size={32} />, estimatedTime: '30분-1시간', price: '150만원~', popularity: 83
+      id: 5, key: 'lasik', category: 'eye', 
+      icon: <Eye size={32} />, 
+      estimatedTime: { ko: '30 min-1 hour', en: '30 min-1 hour' }, 
+      price: { ko: '$1,200~', en: '$1,200~' }, 
+      popularity: 83
     },
     {
-      id: 6, key: 'implant', category: 'dental', department: '치과',
-      icon: <Smile size={32} />, estimatedTime: '1-2시간', price: '120만원~', popularity: 80
+      id: 6, key: 'implant', category: 'dental', 
+      icon: <Smile size={32} />, 
+      estimatedTime: { ko: '1-2 hours', en: '1-2 hours' }, 
+      price: { ko: '$1,000~', en: '$1,000~' }, 
+      popularity: 80
     },
     {
-      id: 7, key: 'orthodontics', category: 'dental', department: '치과',
-      icon: <Smile size={32} />, estimatedTime: '1시간', price: '400만원~', popularity: 78
+      id: 7, key: 'orthodontics', category: 'dental', 
+      icon: <Smile size={32} />, 
+      estimatedTime: { ko: '1 hour', en: '1 hour' }, 
+      price: { ko: '$3,300~', en: '$3,300~' }, 
+      popularity: 78
     },
     {
-      id: 8, key: 'laserToning', category: 'derma', department: '피부과',
-      icon: <Zap size={32} />, estimatedTime: '30분', price: '15만원~', popularity: 75
+      id: 8, key: 'laserToning', category: 'derma', 
+      icon: <Zap size={32} />, 
+      estimatedTime: { ko: '30 minutes', en: '30 minutes' }, 
+      price: { ko: '$120~', en: '$120~' }, 
+      popularity: 75
     },
     {
-      id: 9, key: 'breastAugmentation', category: 'plastic', department: '성형외과',
-      icon: <Heart size={32} />, estimatedTime: '2-3시간', price: '500만원~', popularity: 72
+      id: 9, key: 'breastAugmentation', category: 'plastic', 
+      icon: <Heart size={32} />, 
+      estimatedTime: { ko: '2-3 hours', en: '2-3 hours' }, 
+      price: { ko: '$4,200~', en: '$4,200~' }, 
+      popularity: 72
     },
     {
-      id: 10, key: 'liposuction', category: 'plastic', department: '성형외과',
-      icon: <Zap size={32} />, estimatedTime: '2-4시간', price: '400만원~', popularity: 70
+      id: 10, key: 'liposuction', category: 'plastic', 
+      icon: <Zap size={32} />, 
+      estimatedTime: { ko: '2-4 hours', en: '2-4 hours' }, 
+      price: { ko: '$3,300~', en: '$3,300~' }, 
+      popularity: 70
     },
     {
-      id: 11, key: 'cataract', category: 'eye', department: '안과',
-      icon: <Eye size={32} />, estimatedTime: '30분-1시간', price: '200만원~', popularity: 68
+      id: 11, key: 'cataract', category: 'eye', 
+      icon: <Eye size={32} />, 
+      estimatedTime: { ko: '30 min-1 hour', en: '30 min-1 hour' }, 
+      price: { ko: '$1,700~', en: '$1,700~' }, 
+      popularity: 68
     },
     {
-      id: 12, key: 'healthCheckup', category: 'internal', department: '내과',
-      icon: <Heart size={32} />, estimatedTime: '2-3시간', price: '50만원~', popularity: 65
+      id: 12, key: 'healthCheckup', category: 'internal', 
+      icon: <Heart size={32} />, 
+      estimatedTime: { ko: '2-3 hours', en: '2-3 hours' }, 
+      price: { ko: '$400~', en: '$400~' }, 
+      popularity: 65
     }
   ];
 
@@ -123,11 +159,11 @@ const Dashboard = () => {
                 <div className="procedure-details">
                   <div className="detail-item">
                     <span className="detail-label">{t('Estimated Time:')}</span>
-                    <span className="detail-value">{procedure.estimatedTime}</span>
+                    <span className="detail-value">{procedure.estimatedTime[i18n.language] || procedure.estimatedTime.ko}</span>
                   </div>
                   <div className="detail-item">
                     <span className="detail-label">{t('Estimated Cost:')}</span>
-                    <span className="detail-value">{procedure.price}</span>
+                    <span className="detail-value">{procedure.price[i18n.language] || procedure.price.ko}</span>
                   </div>
                   <div className="popularity-bar">
                     <span className="popularity-label">{t('Popularity')}</span>

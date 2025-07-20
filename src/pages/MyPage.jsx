@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Calendar, Heart, CheckCircle, Building2, Settings, RefreshCw, User } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import { Calendar, Heart, CheckCircle, Building2, Settings, RefreshCw, User, Camera, Edit, Plus, Shield, Activity, FileText, Upload } from 'lucide-react'
 import Card from '../components/Card'
 import Button from '../components/Button'
 import Badge from '../components/Badge'
 import '../styles/pages/MyPage.css'
 
 const MyPage = () => {
+  const { t } = useTranslation()
   const [requests, setRequests] = useState([])
   const [activeTab, setActiveTab] = useState('new')
   const [settings, setSettings] = useState({
@@ -14,13 +16,76 @@ const MyPage = () => {
     notifications: false
   })
 
+  // Profile-related state
+  const [isEditing, setIsEditing] = useState(false)
+  const [profileData, setProfileData] = useState({
+    name: 'Patient Kim',
+    email: 'patient@example.com',
+    phone: '010-1234-5678',
+    introduction: `Hello! I am Patient Kim.
+
+Major Medical History:
+- Regular health checkups
+- Ophthalmology treatment (cataract)
+- Internal medicine treatment
+
+Special Notes:
+- Language support needed (English, Chinese)
+- Diabetes patient
+- Allergies: Penicillin
+
+Language support is needed when communicating with medical staff.`,
+    satisfaction: 4.6,
+    visitCount: 12,
+    membershipYears: 3,
+    languages: ["English", "Chinese"],
+    allergies: ["Penicillin", "Aspirin"],
+    conditions: ["Diabetes", "Hypertension"],
+  })
+
+  const [medicalHistory, setMedicalHistory] = useState([
+    {
+      id: 1,
+      hospital: "Seoul National University Hospital",
+      date: "2024.01.15",
+      diagnosis: "Cataract Surgery",
+      doctor: "Dr. Kim, Ophthalmologist",
+    },
+  ])
+
+  const [insuranceList, setInsuranceList] = useState([
+    {
+      id: 1,
+      name: "National Health Insurance",
+      number: "1234-5678-9012",
+      expireDate: "2025.12",
+    },
+  ])
+
+  const treatmentHistory = [
+    {
+      id: 1,
+      hospital: "Seoul National University Hospital",
+      satisfaction: 5,
+      date: "2024.01.15",
+      comment: "Cataract surgery was completed successfully. The medical staff and language support service were excellent.",
+    },
+    {
+      id: 2,
+      hospital: "Samsung Medical Center",
+      satisfaction: 4,
+      date: "2024.01.10",
+      comment: "Vitamin D deficiency was found during regular checkup. Thank you for the kind explanation.",
+    },
+  ]
+
   const stats = [
     {
       id: 'appointments',
       icon: <Calendar className="stat-icon-svg" />,
       trend: '+3',
       number: '7',
-      label: '이번 달 예약',
+      label: t('This Month\'s Appointments'),
       type: 'completion'
     },
     {
@@ -28,7 +93,7 @@ const MyPage = () => {
       icon: <Building2 className="stat-icon-svg" />,
       trend: '+2',
       number: '12',
-      label: '방문한 병원',
+      label: t('Visited Hospitals'),
       type: 'income'
     },
     {
@@ -36,15 +101,15 @@ const MyPage = () => {
       icon: <Heart className="stat-icon-svg" />,
       trend: '+0.2',
       number: '4.6',
-      label: '서비스 만족도',
+      label: t('Service Satisfaction'),
       type: 'rating'
     },
     {
       id: 'upcoming',
       icon: <CheckCircle className="stat-icon-svg" />,
-      trend: '예정',
+      trend: t('Upcoming'),
       number: '1',
-      label: '다가오는 예약',
+      label: t('Upcoming Appointments'),
       type: 'requests'
     }
   ]
@@ -114,15 +179,15 @@ const MyPage = () => {
   }
 
   const cancelAppointment = (appointmentId) => {
-    const reason = prompt('예약 취소 사유를 입력해주세요:')
+    const reason = prompt('Please enter the reason for appointment cancellation:')
     if (reason) {
-      alert(`예약 ID ${appointmentId}를 취소했습니다.\n사유: ${reason}`)
+      alert(`Appointment ID ${appointmentId} has been cancelled.\nReason: ${reason}`)
       setRequests(prev => prev.filter(req => req.id !== appointmentId))
     }
   }
 
   const rescheduleAppointment = (appointmentId) => {
-    alert(`예약 ID ${appointmentId}의 일정을 변경합니다.`)
+    alert(`Rescheduling appointment ID ${appointmentId}.`)
   }
 
   const formatDate = (dateString) => {
@@ -134,17 +199,135 @@ const MyPage = () => {
     return `${month}월 ${day}일 (${dayName})`
   }
 
+  // 프로필 관련 핸들러 함수들
+  const handleProfileChange = (field, value) => {
+    setProfileData((prev) => ({
+      ...prev,
+      [field]: value,
+    }))
+  }
+
+  const handleSave = () => {
+    setIsEditing(false)
+    alert("Profile has been saved.")
+  }
+
+  const addMedicalHistory = () => {
+    const hospital = prompt("Enter hospital name:")
+    const date = prompt("Enter treatment date: (e.g., 2024.01.15)")
+    const diagnosis = prompt("Enter diagnosis or treatment details:")
+    const doctor = prompt("Enter attending physician:")
+
+    if (hospital && date && diagnosis && doctor) {
+      const newHistory = {
+        id: Date.now(),
+        hospital,
+        date,
+        diagnosis,
+        doctor,
+      }
+      setMedicalHistory((prev) => [...prev, newHistory])
+      alert("Medical history has been added.")
+    }
+  }
+
+  const addInsurance = () => {
+    const name = prompt("Enter insurance name:")
+    const number = prompt("Enter insurance card number:")
+    const expireDate = prompt("Enter expiration date: (e.g., 2025.12)")
+
+    if (name && number) {
+      const newInsurance = {
+        id: Date.now(),
+        name,
+        number,
+        expireDate: expireDate || null,
+      }
+      setInsuranceList((prev) => [...prev, newInsurance])
+      alert("Insurance information has been added.")
+    }
+  }
+
+  const handlePhotoUpload = () => {
+    alert("Profile photo upload feature.")
+  }
+
   return (
     <div className="mypage">
       <div className="container">
-        {/* 마이페이지 헤더 */}
+        {/* My Page Header */}
         <div className="mypage-header">
-          <h1>환자 마이페이지</h1>
+          <h1>{t('Patient My Page')}</h1>
           <div className="user-welcome">
-            <span className="welcome-text">안녕하세요, <strong>김환자</strong>님!</span>
+            <span className="welcome-text">{t('Hello,')} <strong>{profileData.name}</strong>!</span>
             <div className="status-indicator online">
               <span className="status-dot"></span>
-              활동 중
+              {t('Active')}
+            </div>
+          </div>
+        </div>
+
+        {/* Profile Header Section */}
+        <div className="profile-header-section">
+          <div className="profile-photo-section">
+            <div className="profile-photo-wrapper">
+              <div className="profile-photo-container" onClick={handlePhotoUpload}>
+                <div className="profile-photo-inner">
+                  <img
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24' fill='none' stroke='%23cbd5e1' stroke-width='1.5'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E"
+                    alt="Profile Photo"
+                  />
+                  <div className="photo-overlay">
+                    <div className="overlay-icon">
+                      <Camera size={20} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="photo-status-indicator online"></div>
+            </div>
+          </div>
+          
+          <div className="profile-summary">
+            <div className="profile-badge-wrapper">
+              <Badge type="success" className="verified-badge">
+                <Shield size={14} />
+                {t('Verified Patient')}
+              </Badge>
+            </div>
+            <h2 className="profile-name">{profileData.name}</h2>
+            <p className="profile-title">{t('Hospital Interpretation Service User')}</p>
+            
+            <div className="profile-stats-grid">
+              <div className="stat-item">
+                <div className="stat-icon languages">
+                  <span>🌍</span>
+                </div>
+                <div className="stat-content">
+                  <span className="stat-label">{t('Language Support')}</span>
+                  <span className="stat-value">{profileData.languages.join(", ")}</span>
+                </div>
+              </div>
+              
+              <div className="stat-item">
+                <div className="stat-icon rating">
+                  <Heart size={18} fill="currentColor" />
+                </div>
+                <div className="stat-content">
+                  <span className="stat-label">{t('Satisfaction')}</span>
+                  <span className="stat-value">{profileData.satisfaction}/5.0</span>
+                </div>
+              </div>
+              
+              <div className="stat-item">
+                <div className="stat-icon experience">
+                  <Activity size={18} />
+                </div>
+                <div className="stat-content">
+                  <span className="stat-label">{t('Visited Hospitals')}</span>
+                  <span className="stat-value">{profileData.visitCount}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -179,13 +362,13 @@ const MyPage = () => {
           {/* 빠른 설정 */}
           <div className="mypage-card quick-settings-card">
             <div className="card-header">
-              <h3><Settings size={20} /> 빠른 설정</h3>
+              <h3><Settings size={20} /> {t('Quick Settings')}</h3>
             </div>
             <div className="card-content">
               <div className="setting-item">
                 <div className="setting-info">
-                  <div className="setting-title">예약 알림</div>
-                  <div className="setting-desc">예약 확인 및 리마인더 알림 수신</div>
+                  <div className="setting-title">{t('Appointment Notifications')}</div>
+                  <div className="setting-desc">{t('Receive confirmation and reminder notifications')}</div>
                 </div>
                 <label className="toggle-switch">
                   <input 
@@ -198,8 +381,8 @@ const MyPage = () => {
               </div>
               <div className="setting-item">
                 <div className="setting-info">
-                  <div className="setting-title">언어 지원 서비스</div>
-                  <div className="setting-desc">진료 시 언어 지원이 필요한 경우</div>
+                  <div className="setting-title">{t('Language Support Service')}</div>
+                  <div className="setting-desc">{t('When language support is needed during treatment')}</div>
                 </div>
                 <label className="toggle-switch">
                   <input 
@@ -212,8 +395,8 @@ const MyPage = () => {
               </div>
               <div className="setting-item">
                 <div className="setting-info">
-                  <div className="setting-title">자동 예약 확인</div>
-                  <div className="setting-desc">예약 변경 사항 자동 확인</div>
+                  <div className="setting-title">{t('Auto Appointment Confirmation')}</div>
+                  <div className="setting-desc">{t('Automatic confirmation of appointment changes')}</div>
                 </div>
                 <label className="toggle-switch">
                   <input 
@@ -230,7 +413,7 @@ const MyPage = () => {
           {/* 예약 요청 관리 */}
           <div className="mypage-card requests-card">
             <div className="card-header">
-              <h3><Calendar size={20} /> 예약 관리</h3>
+              <h3><Calendar size={20} /> {t('Appointment Management')}</h3>
               <div className="header-actions">
                 <button 
                   className="refresh-btn" 
@@ -243,9 +426,9 @@ const MyPage = () => {
             <div className="card-content">
               <div className="request-tabs">
                 {[
-                  { key: 'upcoming', label: '예정된 예약', count: 2 },
-                  { key: 'completed', label: '완료된 진료', count: 1 },
-                  { key: 'cancelled', label: '취소된 예약', count: 1 }
+                  { key: 'upcoming', label: t('Scheduled Appointments'), count: 2 },
+                  { key: 'completed', label: t('Completed Treatments'), count: 1 },
+                  { key: 'cancelled', label: t('Cancelled Appointments'), count: 1 }
                 ].map(tab => (
                   <button
                     key={tab.key}
@@ -259,13 +442,13 @@ const MyPage = () => {
               
               <div className="request-list">
                 {requests.length === 0 ? (
-                  <p className="no-data">예약이 없습니다.</p>
+                  <p className="no-data">{t('No appointments')}</p>
                 ) : (
                   requests.map(request => (
                     <div key={request.id} className="request-item mypage-request">
                       <div className="request-header">
                         <h4>{request.hospital}</h4>
-                        {request.status === 'pending' && <span className="urgent-badge">대기</span>}
+                        {request.status === 'pending' && <span className="urgent-badge">{t('Standby')}</span>}
                       </div>
                       <div className="request-details">
                         <p><Calendar size={16} /> {formatDate(request.date)} {request.time}</p>
@@ -279,13 +462,13 @@ const MyPage = () => {
                             className="btn-primary"
                             onClick={() => rescheduleAppointment(request.id)}
                           >
-                            일정 변경
+                            {t('Reschedule')}
                           </button>
                           <button 
                             className="btn-secondary"
                             onClick={() => cancelAppointment(request.id)}
                           >
-                            예약 취소
+                            {t('Cancel Appointment')}
                           </button>
                         </div>
                       )}
@@ -299,7 +482,7 @@ const MyPage = () => {
           {/* 오늘의 일정 */}
           <div className="mypage-card schedule-card">
             <div className="card-header">
-              <h3><Calendar size={20} /> 오늘의 일정</h3>
+              <h3><Calendar size={20} /> {t('Today\'s Schedule')}</h3>
               <div className="header-actions">
                 <span className="date-display">1월 22일 (월)</span>
               </div>
@@ -307,9 +490,183 @@ const MyPage = () => {
             <div className="card-content">
               <div className="today-schedule">
                 <div className="no-schedule">
-                  <p>📅 오늘 예정된 일정이 없습니다.</p>
-                  <p>편안한 하루 보내세요!</p>
+                  <p>{t('No schedule for today')}</p>
+                  <p>{t('Have a comfortable day!')}</p>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 프로필 정보 관리 섹션 */}
+          <div className="mypage-card profile-info-card">
+            <div className="card-header">
+              <h3><User size={20} /> {t('Personal Information Management')}</h3>
+              <Button
+                variant="ghost"
+                size="small"
+                icon={<Edit size={14} />}
+                onClick={() => setIsEditing(!isEditing)}
+              >
+                {isEditing ? t('Cancel') : t('Edit')}
+              </Button>
+            </div>
+            <div className="card-content">
+              <div className="profile-info">
+                <div className="info-item">
+                  <label>{t('Name:')}</label>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      value={profileData.name}
+                      onChange={(e) => handleProfileChange("name", e.target.value)}
+                    />
+                  ) : (
+                    <span>{profileData.name}</span>
+                  )}
+                </div>
+                <div className="info-item">
+                  <label>{t('Email:')}</label>
+                  {isEditing ? (
+                    <input
+                      type="email"
+                      value={profileData.email}
+                      onChange={(e) => handleProfileChange("email", e.target.value)}
+                    />
+                  ) : (
+                    <span>{profileData.email}</span>
+                  )}
+                </div>
+                <div className="info-item">
+                  <label>{t('Phone:')}</label>
+                  {isEditing ? (
+                    <input
+                      type="tel"
+                      value={profileData.phone}
+                      onChange={(e) => handleProfileChange("phone", e.target.value)}
+                    />
+                  ) : (
+                    <span>{profileData.phone}</span>
+                  )}
+                </div>
+              </div>
+              {isEditing && (
+                <div className="edit-actions">
+                  <Button variant="primary" size="medium" onClick={handleSave}>
+                    {t('Save')}
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* 의료 정보 섹션 */}
+          <div className="mypage-card medical-info-card">
+            <div className="card-header">
+              <h3><FileText size={20} /> {t('Medical Information & Notes')}</h3>
+            </div>
+            <div className="card-content">
+              <div className="introduction-section">
+                <textarea
+                  className="introduction-textarea"
+                  value={profileData.introduction}
+                  onChange={(e) => handleProfileChange("introduction", e.target.value)}
+                  placeholder="의료 정보 및 특이사항을 작성해주세요. 알레르기, 만성질환, 언어 지원 필요 사항 등을 포함해주세요."
+                />
+                <div className="introduction-actions">
+                  <Button variant="primary" size="medium" onClick={handleSave}>
+                    {t('Save')}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 진료 내역 섹션 */}
+          <div className="mypage-card medical-history-card">
+            <div className="card-header">
+              <h3><Activity size={20} /> {t('Medical History')}</h3>
+              <Button 
+                variant="primary" 
+                size="small"
+                icon={<Plus size={16} />} 
+                onClick={addMedicalHistory}
+              >
+                {t('Add')}
+              </Button>
+            </div>
+            <div className="card-content">
+              <div className="medical-history-list">
+                {medicalHistory.map((history) => (
+                  <div key={history.id} className="history-item">
+                    <div className="history-info">
+                      <h4>{history.hospital}</h4>
+                      <p>{t('Treatment Date:')} {history.date}</p>
+                      <p>{t('Diagnosis:')} {history.diagnosis}</p>
+                      <p>{t('Doctor:')} {history.doctor}</p>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="small"
+                      icon={<Edit size={14} />}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 보험 정보 섹션 */}
+          <div className="mypage-card insurance-card">
+            <div className="card-header">
+              <h3><Shield size={20} /> {t('Insurance Information')}</h3>
+              <Button 
+                variant="primary" 
+                size="small"
+                icon={<Plus size={16} />} 
+                onClick={addInsurance}
+              >
+                {t('Add')}
+              </Button>
+            </div>
+            <div className="card-content">
+              <div className="insurance-list">
+                {insuranceList.map((insurance) => (
+                  <div key={insurance.id} className="insurance-item">
+                    <div className="insurance-info">
+                      <h4>{insurance.name}</h4>
+                      <p>{t('Insurance Number:')} {insurance.number}</p>
+                      {insurance.expireDate && (
+                        <p>{t('Valid Until:')} {insurance.expireDate}</p>
+                      )}
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="small"
+                      icon={<Edit size={14} />}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 진료 후기 섹션 */}
+          <div className="mypage-card reviews-card">
+            <div className="card-header">
+              <h3><Heart size={20} /> {t('Treatment Reviews')} ({t('Satisfaction:')} {profileData.satisfaction}/5.0)</h3>
+            </div>
+            <div className="card-content">
+              <div className="review-list">
+                {treatmentHistory.map((treatment) => (
+                  <div key={treatment.id} className="review-item">
+                    <div className="review-header">
+                      <span className="hospital-name">{treatment.hospital}</span>
+                      <span className="rating">{"★".repeat(treatment.satisfaction)}</span>
+                      <span className="date">{treatment.date}</span>
+                    </div>
+                    <p className="review-text">{treatment.comment}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

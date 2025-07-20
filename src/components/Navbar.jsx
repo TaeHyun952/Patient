@@ -5,7 +5,7 @@ import { Home, Calendar, User, UserPlus, BarChart3, Building2 } from 'lucide-rea
 import '../styles/components/Navbar.css'
 
 const Navbar = ({ currentUser }) => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -14,28 +14,24 @@ const Navbar = ({ currentUser }) => {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <h2>병원 통역 서비스</h2>
+        <h2>{t('Hospital Interpretation Service')}</h2>
       </div>
       <div className="nav-menu">
         <NavLink to="/" className="nav-item">
           <BarChart3 size={18} />
-          시술 선택
+          {t('Procedure Selection')}
         </NavLink>
         <NavLink to="/schedule" className="nav-item">
           <Calendar size={18} />
-          예약 내역
+          {t('Booking History')}
         </NavLink>
         <NavLink to="/mypage" className="nav-item">
           <Home size={18} />
-          마이페이지
-        </NavLink>
-        <NavLink to="/profile" className="nav-item">
-          <User size={18} />
-          프로필
+          {t('My Page')}
         </NavLink>
         <NavLink to="/login" className="nav-item">
           <UserPlus size={18} />
-          로그인
+          {t('Login')}
         </NavLink>
       </div>
       <div className="nav-user">
@@ -59,7 +55,7 @@ const Navbar = ({ currentUser }) => {
             <span className="user-name">{currentUser.name}</span>
             <div className={`status-indicator ${currentUser.status}`}>
               <span className="status-dot"></span>
-              {currentUser.status === 'active' ? '활동 중' : '비활성'}
+              {currentUser.status === 'active' ? t('Active') : t('Inactive')}
             </div>
           </div>
         )}

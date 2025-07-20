@@ -46,18 +46,18 @@ const Signup = ({ currentUser, setCurrentUser }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     
-    // 유효성 검사
+    // Validation
     if (!formData.name || !formData.email || !formData.phone || !formData.birthDate || !formData.gender) {
-      alert('필수 정보를 모두 입력해주세요.')
+      alert('Please fill in all required information.')
       return
     }
     
     if (!agreedToTerms || !agreedToPrivacy) {
-      alert('이용약관과 개인정보처리방침에 동의해주세요.')
+      alert('Please agree to the Terms of Use and Privacy Policy.')
       return
     }
 
-    // 사용자 정보 업데이트
+    // Update user information
     const updatedUser = {
       ...currentUser,
       ...formData,
@@ -69,12 +69,12 @@ const Signup = ({ currentUser, setCurrentUser }) => {
     setCurrentUser(updatedUser)
     setRegistrationStatus('pending')
     
-    alert('회원가입 정보가 저장되었습니다!')
+    alert('Registration information has been saved!')
 
-    // 3초 후 자동으로 승인 상태로 변경 (데모용)
+    // Automatically change to approved status after 3 seconds (for demo)
     setTimeout(() => {
       setRegistrationStatus('approved')
-      alert('회원가입이 완료되었습니다!')
+      alert('Registration completed successfully!')
     }, 3000)
   }
 
@@ -92,11 +92,11 @@ const Signup = ({ currentUser, setCurrentUser }) => {
   const getStatusText = () => {
     switch (registrationStatus) {
       case 'pending':
-        return '등록 처리 중'
+        return 'Registration Processing'
       case 'approved':
-        return '등록 완료'
+        return 'Registration Complete'
       default:
-        return '미등록'
+        return 'Not Registered'
     }
   }
 
@@ -104,10 +104,10 @@ const Signup = ({ currentUser, setCurrentUser }) => {
     return (
       <div className="signup verification">
         <div className="container">
-          <h1>환자 등록 현황</h1>
+          <h1>Patient Registration Status</h1>
           <div className="verification-status">
             <div className="status-item">
-              <span className="status-label">등록 상태:</span>
+              <span className="status-label">Registration Status:</span>
               <span className={`status-value ${registrationStatus}`}>
                 {getStatusIcon()}
                 {getStatusText()}
@@ -115,22 +115,22 @@ const Signup = ({ currentUser, setCurrentUser }) => {
             </div>
             
             <div className="patient-info">
-              <h3>등록 정보</h3>
+              <h3>Registration Information</h3>
               <div className="info-preview">
                 <div className="info-item">
-                  <strong>환자명:</strong> {formData.name}
+                  <strong>Patient Name:</strong> {formData.name}
                 </div>
                 <div className="info-item">
-                  <strong>이메일:</strong> {formData.email}
+                  <strong>Email:</strong> {formData.email}
                 </div>
                 <div className="info-item">
-                  <strong>전화번호:</strong> {formData.phone}
+                  <strong>Phone:</strong> {formData.phone}
                 </div>
                 <div className="info-item">
-                  <strong>생년월일:</strong> {formData.birthDate}
+                  <strong>Birth Date:</strong> {formData.birthDate}
                 </div>
                 <div className="info-item">
-                  <strong>등록 시간:</strong> {new Date().toLocaleString()}
+                  <strong>Registration Time:</strong> {new Date().toLocaleString()}
                 </div>
               </div>
             </div>
@@ -140,13 +140,13 @@ const Signup = ({ currentUser, setCurrentUser }) => {
                 className="btn-secondary" 
                 onClick={() => setRegistrationStatus('none')}
               >
-                ⬅️ 정보 수정
+                ⬅️ Edit Information
               </button>
               <button 
                 className="btn-primary" 
                 onClick={() => window.location.href = '/dashboard'}
               >
-                🏠 대시보드로
+                🏠 To Dashboard
               </button>
             </div>
           </div>
@@ -158,10 +158,10 @@ const Signup = ({ currentUser, setCurrentUser }) => {
   return (
     <div className="signup">
       <div className="container">
-        <h1>환자 회원가입</h1>
+        <h1>Patient Registration</h1>
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="name">이름</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               id="name"
@@ -173,7 +173,7 @@ const Signup = ({ currentUser, setCurrentUser }) => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="email">이메일</label>
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
@@ -185,7 +185,7 @@ const Signup = ({ currentUser, setCurrentUser }) => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="phone">전화번호</label>
+            <label htmlFor="phone">Phone Number</label>
             <input
               type="tel"
               id="phone"
@@ -197,7 +197,7 @@ const Signup = ({ currentUser, setCurrentUser }) => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="birthDate">생년월일 *</label>
+            <label htmlFor="birthDate">Birth Date *</label>
             <input
               type="date"
               id="birthDate"
@@ -209,7 +209,7 @@ const Signup = ({ currentUser, setCurrentUser }) => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="gender">성별 *</label>
+            <label htmlFor="gender">Gender *</label>
             <select
               id="gender"
               name="gender"
@@ -217,116 +217,116 @@ const Signup = ({ currentUser, setCurrentUser }) => {
               onChange={handleInputChange}
               required
             >
-              <option value="">선택해주세요</option>
-              <option value="male">남성</option>
-              <option value="female">여성</option>
-              <option value="other">기타</option>
+              <option value="">Please select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
             </select>
           </div>
           
           <div className="form-group">
-            <label htmlFor="address">주소</label>
+            <label htmlFor="address">Address</label>
             <input
               type="text"
               id="address"
               name="address"
               value={formData.address}
               onChange={handleInputChange}
-              placeholder="주소를 입력해주세요"
+              placeholder="Please enter your address"
             />
           </div>
           
           <div className="form-group">
-            <label htmlFor="emergencyContact">비상연락처 (이름)</label>
+            <label htmlFor="emergencyContact">Emergency Contact (Name)</label>
             <input
               type="text"
               id="emergencyContact"
               name="emergencyContact"
               value={formData.emergencyContact}
               onChange={handleInputChange}
-              placeholder="비상시 연락할 분의 이름"
+              placeholder="Name of emergency contact person"
             />
           </div>
           
           <div className="form-group">
-            <label htmlFor="emergencyPhone">비상연락처 (전화번호)</label>
+            <label htmlFor="emergencyPhone">Emergency Contact (Phone)</label>
             <input
               type="tel"
               id="emergencyPhone"
               name="emergencyPhone"
               value={formData.emergencyPhone}
               onChange={handleInputChange}
-              placeholder="비상시 연락할 전화번호"
+              placeholder="Emergency contact phone number"
             />
           </div>
           
           <div className="form-group">
-            <label htmlFor="preferredLanguage">언어 지원 필요</label>
+            <label htmlFor="preferredLanguage">Language Support Needed</label>
             <select
               id="preferredLanguage"
               name="preferredLanguage"
               value={formData.preferredLanguage}
               onChange={handleInputChange}
             >
-              <option value="">없음</option>
-              <option value="english">영어</option>
-              <option value="chinese">중국어</option>
-              <option value="japanese">일본어</option>
-              <option value="spanish">스페인어</option>
-              <option value="french">프랑스어</option>
+              <option value="">None</option>
+              <option value="english">English</option>
+              <option value="chinese">Chinese</option>
+              <option value="japanese">Japanese</option>
+              <option value="spanish">Spanish</option>
+              <option value="french">French</option>
             </select>
           </div>
           
           <div className="form-group">
-            <label htmlFor="allergies">알레르기</label>
+            <label htmlFor="allergies">Allergies</label>
             <input
               type="text"
               id="allergies"
               name="allergies"
               value={formData.allergies}
               onChange={handleInputChange}
-              placeholder="알레르기가 있으면 입력해주세요 (예: 페니실린, 견과류)"
+              placeholder="Please enter allergies if any (e.g., Penicillin, Nuts)"
             />
           </div>
           
           <div className="form-group">
-            <label htmlFor="medicalConditions">기존 질환</label>
+            <label htmlFor="medicalConditions">Existing Medical Conditions</label>
             <input
               type="text"
               id="medicalConditions"
               name="medicalConditions"
               value={formData.medicalConditions}
               onChange={handleInputChange}
-              placeholder="기존 질환이 있으면 입력해주세요 (예: 당뇨병, 고혈압)"
+              placeholder="Please enter existing conditions if any (e.g., Diabetes, Hypertension)"
             />
           </div>
           
           <div className="form-group">
-            <label htmlFor="insuranceProvider">보험사</label>
+            <label htmlFor="insuranceProvider">Insurance Provider</label>
             <select
               id="insuranceProvider"
               name="insuranceProvider"
               value={formData.insuranceProvider}
               onChange={handleInputChange}
             >
-              <option value="">선택해주세요</option>
-              <option value="national">국민건강보험</option>
-              <option value="samsung">삼성화재</option>
-              <option value="hyundai">현대해상</option>
-              <option value="dongbu">동부화재</option>
-              <option value="other">기타</option>
+              <option value="">Please select</option>
+              <option value="national">National Health Insurance</option>
+              <option value="samsung">Samsung Fire & Marine</option>
+              <option value="hyundai">Hyundai Marine & Fire</option>
+              <option value="dongbu">Dongbu Fire & Marine</option>
+              <option value="other">Other</option>
             </select>
           </div>
           
           <div className="form-group">
-            <label htmlFor="insuranceNumber">보험증 번호</label>
+            <label htmlFor="insuranceNumber">Insurance Card Number</label>
             <input
               type="text"
               id="insuranceNumber"
               name="insuranceNumber"
               value={formData.insuranceNumber}
               onChange={handleInputChange}
-              placeholder="보험증 번호를 입력해주세요"
+              placeholder="Please enter your insurance card number"
             />
           </div>
           
@@ -339,7 +339,7 @@ const Signup = ({ currentUser, setCurrentUser }) => {
                 onChange={(e) => handleCheckboxChange('terms', e.target.checked)}
                 required
               />
-              <label htmlFor="agreeTerms">이용약관에 동의합니다 *</label>
+              <label htmlFor="agreeTerms">I agree to the Terms of Use *</label>
             </div>
             
             <div className="checkbox-item">
@@ -350,7 +350,7 @@ const Signup = ({ currentUser, setCurrentUser }) => {
                 onChange={(e) => handleCheckboxChange('privacy', e.target.checked)}
                 required
               />
-              <label htmlFor="agreePrivacy">개인정보 처리방침에 동의합니다 *</label>
+              <label htmlFor="agreePrivacy">I agree to the Privacy Policy *</label>
             </div>
           </div>
           
@@ -360,11 +360,11 @@ const Signup = ({ currentUser, setCurrentUser }) => {
             disabled={!agreedToTerms || !agreedToPrivacy}
           >
             <Shield size={18} />
-            환자 등록 완료
+            Complete Patient Registration
           </button>
         </form>
         <div className="login-link">
-          <p>이미 계정이 있으신가요? <Link to="/login">로그인</Link></p>
+          <p>Already have an account? <Link to="/login">Login</Link></p>
         </div>
       </div>
     </div>

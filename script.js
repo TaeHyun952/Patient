@@ -1,8 +1,8 @@
-// 전역 변수
+// Global variables
 let currentWeek = new Date();
 let selectedDate = null;
 
-// 데이터 저장소 키
+// Data storage keys
 const STORAGE_KEYS = {
     USER_PROFILE: 'interpreterProfile',
     CAREER_LIST: 'interpreterCareer',
@@ -14,142 +14,142 @@ const STORAGE_KEYS = {
     PROFILE_PHOTO: 'interpreterProfilePhoto'
 };
 
-// 강남 그랜드 안과 예약 데이터
+// Gangnam Grand Eye Clinic booking data
 const gangnamGrandEyeBookings = [
     {
         id: 1,
         date: '2024-01-22',
         time: '09:00-12:00',
         status: 'upcoming',
-        patient: '김환자',
-        nationality: '미국',
-        department: '안과',
-        procedure: '백내장 수술 상담',
-        rate: '30,000원',
-        total: '90,000원',
-        notes: '수술 전 상담 및 검사 결과 설명'
+        patient: 'John Kim',
+        nationality: 'USA',
+        department: 'Ophthalmology',
+        procedure: 'Cataract surgery consultation',
+        rate: '$30',
+        total: '$90',
+        notes: 'Pre-surgery consultation and test results explanation'
     },
     {
         id: 2,
         date: '2024-01-25',
         time: '14:00-16:00',
         status: 'upcoming',
-        patient: '이환자',
-        nationality: '중국',
-        department: '안과',
-        procedure: '라식 수술 상담',
-        rate: '25,000원',
-        total: '50,000원',
-        notes: '라식 수술 적합성 검사 및 상담'
+        patient: 'David Lee',
+        nationality: 'China',
+        department: 'Ophthalmology',
+        procedure: 'LASIK surgery consultation',
+        rate: '$25',
+        total: '$50',
+        notes: 'LASIK surgery suitability examination and consultation'
     },
     {
         id: 3,
         date: '2024-01-28',
         time: '10:00-13:00',
         status: 'upcoming',
-        patient: '박환자',
-        nationality: '일본',
-        department: '안과',
-        procedure: '정기 검진',
-        rate: '25,000원',
-        total: '75,000원',
-        notes: '백내장 수술 후 정기 검진'
+        patient: 'Michael Park',
+        nationality: 'Japan',
+        department: 'Ophthalmology',
+        procedure: 'Regular checkup',
+        rate: '$25',
+        total: '$75',
+        notes: 'Post-cataract surgery regular checkup'
     },
     {
         id: 4,
         date: '2024-01-15',
         time: '09:00-12:00',
         status: 'completed',
-        patient: '최환자',
-        nationality: '미국',
-        department: '안과',
-        procedure: '백내장 수술',
-        rate: '35,000원',
-        total: '105,000원',
-        notes: '백내장 수술 진행 완료'
+        patient: 'Robert Choi',
+        nationality: 'USA',
+        department: 'Ophthalmology',
+        procedure: 'Cataract surgery',
+        rate: '$35',
+        total: '$105',
+        notes: 'Cataract surgery completed successfully'
     },
     {
         id: 5,
         date: '2024-01-18',
         time: '14:00-17:00',
         status: 'completed',
-        patient: '정환자',
-        nationality: '중국',
-        department: '안과',
-        procedure: '녹내장 검사',
-        rate: '28,000원',
-        total: '84,000원',
-        notes: '녹내장 정밀 검사 및 상담'
+        patient: 'James Jung',
+        nationality: 'China',
+        department: 'Ophthalmology',
+        procedure: 'Glaucoma examination',
+        rate: '$28',
+        total: '$84',
+        notes: 'Comprehensive glaucoma examination and consultation'
     },
     {
         id: 6,
         date: '2024-01-20',
         time: '11:00-14:00',
         status: 'completed',
-        patient: '강환자',
-        nationality: '일본',
-        department: '안과',
-        procedure: '라식 수술',
-        rate: '32,000원',
-        total: '96,000원',
-        notes: '라식 수술 진행 완료'
+        patient: 'Kevin Kang',
+        nationality: 'Japan',
+        department: 'Ophthalmology',
+        procedure: 'LASIK surgery',
+        rate: '$32',
+        total: '$96',
+        notes: 'LASIK surgery completed successfully'
     },
     {
         id: 7,
         date: '2024-01-12',
         time: '16:00-18:00',
         status: 'cancelled',
-        patient: '윤환자',
-        nationality: '미국',
-        department: '안과',
-        procedure: '정기 검진',
-        rate: '25,000원',
-        total: '50,000원',
-        notes: '환자 개인사정으로 취소'
+        patient: 'Steven Yoon',
+        nationality: 'USA',
+        department: 'Ophthalmology',
+        procedure: 'Regular checkup',
+        rate: '$25',
+        total: '$50',
+        notes: 'Cancelled due to patient personal reasons'
     }
 ];
 
-// 샘플 예약 데이터 (캘린더용)
+// Sample appointment data (for calendar)
 const appointments = {
     '2024-01-22': [
-        { hospital: '강남 그랜드 안과', time: '09:00-12:00', rate: '30,000원', total: '90,000원' }
+        { hospital: 'Gangnam Grand Eye Clinic', time: '09:00-12:00', rate: '$30/hr', total: '$90' }
     ],
     '2024-01-25': [
-        { hospital: '강남 그랜드 안과', time: '14:00-16:00', rate: '25,000원', total: '50,000원' }
+        { hospital: 'Gangnam Grand Eye Clinic', time: '14:00-16:00', rate: '$25/hr', total: '$50' }
     ],
     '2024-01-28': [
-        { hospital: '강남 그랜드 안과', time: '10:00-13:00', rate: '25,000원', total: '75,000원' }
+        { hospital: 'Gangnam Grand Eye Clinic', time: '10:00-13:00', rate: '$25/hr', total: '$75' }
     ]
 };
 
-// 페이지 전환 함수
+// Page transition function
 function showPage(pageId) {
-    // 모든 페이지 숨기기
+    // Hide all pages
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => page.classList.remove('active'));
     
-    // 선택된 페이지 보이기
+    // Show selected page
     const targetPage = document.getElementById(pageId + '-page');
     if (targetPage) {
         targetPage.classList.add('active');
         
-        // 스케줄 페이지가 활성화되면 캘린더 초기화 및 강남 그랜드 안과 예약 내역 로드
+        // Initialize calendar and load Gangnam Grand Eye Clinic bookings when schedule page is activated
         if (pageId === 'schedule') {
             initializeCalendar();
             loadGangnamBookings();
         }
         
-        // 프로필 페이지가 활성화되면 저장된 데이터 로드
+        // Load saved data when profile page is activated
         if (pageId === 'profile') {
             loadAndDisplayAllData();
         }
         
-        // 마이페이지 페이지가 활성화되면 대시보드 데이터 로드
+        // Load dashboard data when mypage is activated
         if (pageId === 'mypage') {
             loadDashboardData();
         }
 
-        // 로그인 페이지가 활성화되면 로그인 폼 이벤트 리스너 설정
+        // Set up login form event listener when login page is activated
         if (pageId === 'login') {
             const loginForm = document.getElementById('login-form');
             if (loginForm) {
@@ -159,15 +159,15 @@ function showPage(pageId) {
     }
 }
 
-// DOM이 로드되면 실행
+// Execute when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // 회원가입 폼 이벤트
+    // Sign up form events
     const signupForm = document.getElementById('signup-form');
     if (signupForm) {
         signupForm.addEventListener('submit', handleSignup);
     }
     
-    // 캘린더 네비게이션 이벤트
+    // Calendar navigation events
     const prevWeekBtn = document.getElementById('prev-week');
     const nextWeekBtn = document.getElementById('next-week');
     
@@ -185,19 +185,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 초기 캘린더 생성
+    // Initial calendar generation
     initializeCalendar();
     
-    // 저장된 사용자 정보 로드
+    // Load saved user information
     loadUserProfile();
     
-    // 프로필 사진 업로드 이벤트
+    // Profile photo upload event
     const photoUpload = document.getElementById('photo-upload');
     if (photoUpload) {
         photoUpload.addEventListener('change', handleProfilePhotoUpload);
     }
     
-    // 음성/영상 업로드 이벤트
+    // Audio/video upload events
     const audioUpload = document.getElementById('audio-upload');
     const videoUpload = document.getElementById('video-upload');
     
@@ -209,54 +209,54 @@ document.addEventListener('DOMContentLoaded', function() {
         videoUpload.addEventListener('change', handleVideoUpload);
     }
     
-    // 검색 페이지 이벤트 리스너들
+    // Search page event listeners
     setupSearchPageListeners();
     
-    // 대시보드 페이지 이벤트 리스너들
+    // Dashboard page event listeners
     setupDashboardListeners();
     
-    // 예약 요청 폼 이벤트 리스너들
+    // Booking request form event listeners
     setupBookingFormListeners();
     
-    // 초기 검색 실행 (검색 페이지가 활성화된 경우)
+    // Initial search execution (if search page is activated)
     if (document.getElementById('search-page').classList.contains('active')) {
         searchInterpreters();
     }
     
-    // 대시보드 초기 로드
+    // Initial dashboard load
     loadDashboardData();
 });
 
-// 검색 페이지 이벤트 리스너 설정
+// Set up search page event listeners
 function setupSearchPageListeners() {
-    // 전문 분야 태그 클릭 이벤트
+    // Specialty tag click events
     document.querySelectorAll('.specialty-tag').forEach(tag => {
         tag.addEventListener('click', function() {
             toggleSpecialtyTag(this);
         });
     });
     
-    // 평점 선택 이벤트
+    // Rating selection events
     document.querySelectorAll('.star').forEach((star, index) => {
         star.addEventListener('click', function() {
             selectRating(index + 1);
         });
     });
     
-    // 거리 슬라이더 이벤트
+    // Distance slider events
     const distanceRange = document.getElementById('distance-range');
     if (distanceRange) {
         distanceRange.addEventListener('input', updateDistanceValue);
-        updateDistanceValue(); // 초기값 설정
+        updateDistanceValue(); // Set initial value
     }
     
-    // 필터 변경 시 자동 검색
+    // Auto search when filters change
     const filterInputs = document.querySelectorAll('#source-language, #target-language, #min-rate, #max-rate, #required-date, #start-time, #end-time, #instant-booking, #request-booking');
     filterInputs.forEach(input => {
         input.addEventListener('change', searchInterpreters);
     });
     
-    // 모달 외부 클릭 시 닫기
+    // Close modal when clicking outside
     const mapModal = document.getElementById('map-modal');
     if (mapModal) {
         mapModal.addEventListener('click', function(e) {
@@ -267,33 +267,33 @@ function setupSearchPageListeners() {
     }
 }
 
-// 대시보드 이벤트 리스너 설정
+// Set up dashboard event listeners
 function setupDashboardListeners() {
-    // 사용자 타입 전환 버튼
+    // User type switching buttons
     document.querySelectorAll('.user-type-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             switchUserType(this.dataset.type);
         });
     });
     
-    // 빠른 설정 토글
+    // Quick settings toggles
     document.querySelectorAll('.setting-toggle input[type="checkbox"]').forEach(checkbox => {
         checkbox.addEventListener('change', function() {
-            console.log(`설정 변경: ${this.id} = ${this.checked}`);
-            // 실제 구현에서는 서버에 설정 저장
+            console.log(`Setting changed: ${this.id} = ${this.checked}`);
+            // In actual implementation, save settings to server
         });
     });
 }
 
-// 예약 요청 폼 이벤트 리스너 설정
+// Set up booking request form event listeners
 function setupBookingFormListeners() {
-    // 반복 예약 체크박스
+    // Recurring booking checkbox
     const recurringCheckbox = document.getElementById('is-recurring');
     if (recurringCheckbox) {
         recurringCheckbox.addEventListener('change', toggleRecurringOptions);
     }
     
-    // 예약 요청 폼 제출
+    // Booking request form submission
     const bookingForm = document.getElementById('booking-request-form');
     if (bookingForm) {
         bookingForm.addEventListener('submit', function(e) {
@@ -303,7 +303,7 @@ function setupBookingFormListeners() {
     }
 }
 
-// 예약 요청 처리
+// Handle booking request
 function handleBookingRequest(e) {
     const formData = new FormData(e.target);
     const bookingData = {
@@ -328,36 +328,36 @@ function handleBookingRequest(e) {
         urgentRequest: formData.get('urgent-request')
     };
     
-    console.log('예약 요청 데이터:', bookingData);
+    console.log('Booking request data:', bookingData);
     
-    // 실제 구현에서는 서버로 데이터 전송
-    alert(`${bookingData.bookingType === 'instant' ? '즉시 예약' : '요청 예약'}이 성공적으로 접수되었습니다!`);
+    // In actual implementation, send data to server
+    alert(`${bookingData.bookingType === 'instant' ? 'Instant booking' : 'Request booking'} has been successfully submitted!`);
     
-    // 완료 페이지로 이동
+    // Navigate to completion page
     showPage('completion');
 }
 
-// 로그인 처리
+// Handle login
 function handleLogin(e) {
     e.preventDefault();
     
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
     
-    // 기본 유효성 검사
+    // Basic validation
     if (!email || !password) {
-        alert('이메일과 비밀번호를 모두 입력해주세요.');
+        alert('Please enter both email and password.');
         return;
     }
     
-    // 로그인 시뮬레이션
-    alert(`로그인 성공!\n이메일: ${email}`);
+    // Login simulation
+    alert(`Login successful!\nEmail: ${email}`);
     
-    // 마이페이지로 이동
+    // Navigate to mypage
     showPage('mypage');
 }
 
-// 회원가입 처리
+// Handle signup
 
 function handleSignup(e) {
     e.preventDefault();
@@ -369,13 +369,13 @@ function handleSignup(e) {
     const language = document.getElementById('language').value;
     const license = document.getElementById('license').files[0];
     
-    // 기본 유효성 검사
+    // Basic validation
     if (!name || !email || !phone || !language || !license) {
-        alert('모든 필드를 입력해주세요.');
+        alert('Please fill in all fields.');
         return;
     }
     
-    // 사용자 정보 저장
+    // Save user information
     const userProfile = {
         name: name,
         email: email,
@@ -387,42 +387,42 @@ function handleSignup(e) {
         verificationStatus: 'pending'
     };
     
-    // localStorage에 저장
+    // Save to localStorage
     saveUserProfile(userProfile);
     
-    // 파일 업로드 시뮬레이션
+    // File upload simulation
     const uploadedLicense = document.getElementById('uploaded-license');
     if (uploadedLicense) {
         uploadedLicense.innerHTML = `
             <div class="file-info">
-                <h4>업로드된 파일: ${license.name}</h4>
-                <p>파일 크기: ${(license.size / 1024).toFixed(2)} KB</p>
-                <p>업로드 시간: ${new Date().toLocaleString()}</p>
+                <h4>Uploaded file: ${license.name}</h4>
+                <p>File size: ${(license.size / 1024).toFixed(2)} KB</p>
+                <p>Upload time: ${new Date().toLocaleString()}</p>
             </div>
         `;
     }
     
-    // 검증 페이지로 이동
+    // Navigate to verification page
     showPage('verification');
     
-    // 성공 메시지
-    alert('회원가입 정보가 저장되었습니다!');
+    // Success message
+    alert('Signup information has been saved!');
     
-    // 3초 후 자동으로 승인 상태로 변경 (데모용)
+    // Automatically change to approved status after 3 seconds (for demo)
     setTimeout(() => {
         const statusValue = document.querySelector('.status-value');
         if (statusValue) {
-            statusValue.textContent = '승인 완료';
+            statusValue.textContent = 'Approved';
             statusValue.className = 'status-value approved';
         }
     }, 3000);
 }
 
-// 캘린더 초기화
+// Initialize calendar
 function initializeCalendar() {
-    // 현재 주로 설정
+    // Set to current week
     currentWeek = new Date();
-    // 주의 첫날(월요일)로 설정
+    // Set to first day of week (Monday)
     const day = currentWeek.getDay();
     const diff = currentWeek.getDate() - day + (day === 0 ? -6 : 1);
     currentWeek.setDate(diff);
@@ -430,25 +430,25 @@ function initializeCalendar() {
     generateCalendar();
 }
 
-// 캘린더 생성
+// Generate calendar
 function generateCalendar() {
     const calendarGrid = document.getElementById('calendar-grid');
     const currentWeekElement = document.getElementById('current-week');
     
     if (!calendarGrid || !currentWeekElement) return;
     
-    // 주간 제목 업데이트
+    // Update weekly title
     const weekStart = new Date(currentWeek);
     const weekEnd = new Date(currentWeek);
     weekEnd.setDate(weekEnd.getDate() + 6);
     
     currentWeekElement.textContent = `${formatDate(weekStart)} - ${formatDate(weekEnd)}`;
     
-    // 캘린더 그리드 초기화
+    // Initialize calendar grid
     calendarGrid.innerHTML = '';
     
-    // 요일 헤더
-    const dayNames = ['월', '화', '수', '목', '금', '토', '일'];
+    // Day headers
+    const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     dayNames.forEach(dayName => {
         const dayHeader = document.createElement('div');
         dayHeader.className = 'calendar-day-header';
@@ -462,7 +462,7 @@ function generateCalendar() {
         calendarGrid.appendChild(dayHeader);
     });
     
-    // 주간 날짜들 생성
+    // Generate weekly dates
     for (let i = 0; i < 7; i++) {
         const date = new Date(currentWeek);
         date.setDate(date.getDate() + i);
@@ -472,7 +472,7 @@ function generateCalendar() {
     }
 }
 
-// 날짜 요소 생성
+// Create date element
 function createDayElement(date) {
     const dayElement = document.createElement('div');
     dayElement.className = 'calendar-day';
@@ -487,7 +487,7 @@ function createDayElement(date) {
     dayElement.innerHTML = `
         <div class="day-number">${date.getDate()}</div>
         <div class="day-appointments">
-            ${hasAppointments ? `${hasAppointments.length}건` : ''}
+            ${hasAppointments ? `${hasAppointments.length} appts` : ''}
         </div>
     `;
     
@@ -496,23 +496,23 @@ function createDayElement(date) {
     return dayElement;
 }
 
-// 날짜 선택
+// Select date
 function selectDate(date) {
-    // 이전 선택 제거
+    // Remove previous selection
     const prevSelected = document.querySelector('.calendar-day.selected');
     if (prevSelected) {
         prevSelected.classList.remove('selected');
     }
     
-    // 새로운 선택 적용
+    // Apply new selection
     event.currentTarget.classList.add('selected');
     selectedDate = date;
     
-    // 날짜 상세 정보 업데이트
+    // Update date details
     updateDateDetails(date);
 }
 
-// 날짜 상세 정보 업데이트
+// Update date details
 function updateDateDetails(date) {
     const selectedDateElement = document.getElementById('selected-date');
     const appointmentsList = document.getElementById('appointments-list');
@@ -525,24 +525,24 @@ function updateDateDetails(date) {
     selectedDateElement.textContent = `${formatDate(date)} (${getDayName(date)})`;
     
     if (dayAppointments.length === 0) {
-        appointmentsList.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">예약된 일정이 없습니다.</p>';
+        appointmentsList.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">No scheduled appointments.</p>';
     } else {
         appointmentsList.innerHTML = dayAppointments.map(appointment => `
             <div class="appointment-item">
                 <div class="appointment-header">
                     <span class="hospital-name">${appointment.hospital}</span>
-                    <span class="appointment-rate">시급: ${appointment.rate}</span>
+                    <span class="appointment-rate">Rate: ${appointment.rate}</span>
                 </div>
                 <div class="appointment-time">⏰ ${appointment.time}</div>
-                <div class="appointment-total">💰 예상 수입: ${appointment.total}</div>
+                <div class="appointment-total">💰 Expected income: ${appointment.total}</div>
             </div>
         `).join('');
     }
 }
 
-// 유틸리티 함수들
+// Utility functions
 function formatDate(date) {
-    return `${date.getMonth() + 1}월 ${date.getDate()}일`;
+    return `${date.getMonth() + 1}/${date.getDate()}`;
 }
 
 function formatDateForKey(date) {
@@ -553,29 +553,29 @@ function formatDateForKey(date) {
 }
 
 function getDayName(date) {
-    const days = ['일', '월', '화', '수', '목', '금', '토'];
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     return days[date.getDay()];
 }
 
-// 프로필 편집 기능
+// Profile editing functionality
 function editProfile(field) {
     const element = document.getElementById(`profile-${field}`);
     if (!element) return;
     
     const currentValue = element.textContent;
-    const newValue = prompt(`새로운 ${field}을(를) 입력하세요:`, currentValue);
+    const newValue = prompt(`Enter new ${field}:`, currentValue);
     
     if (newValue && newValue !== currentValue) {
         element.textContent = newValue;
-        alert('프로필이 업데이트되었습니다.');
+        alert('Profile has been updated.');
     }
 }
 
-// 경력 추가 기능
+// Add career functionality
 function addCareer() {
-    const hospital = prompt('병원명을 입력하세요:');
-    const period = prompt('근무 기간을 입력하세요: (예: 2020.01 - 2023.12)');
-    const department = prompt('담당 부서를 입력하세요:');
+    const hospital = prompt('Enter hospital name:');
+    const period = prompt('Enter work period (e.g., 2020.01 - 2023.12):');
+    const department = prompt('Enter department:');
     
     if (hospital && period && department) {
         const career = {
@@ -585,7 +585,7 @@ function addCareer() {
             addedDate: new Date().toISOString()
         };
         
-        // localStorage에 저장
+        // Save to localStorage
         saveCareerItem(career);
         
         const careerList = document.getElementById('career-list');
@@ -594,21 +594,21 @@ function addCareer() {
         newCareer.innerHTML = `
             <div class="career-info">
                 <h4>${hospital}</h4>
-                <p>기간: ${period}</p>
-                <p>담당: ${department}</p>
+                <p>Period: ${period}</p>
+                <p>Department: ${department}</p>
             </div>
-            <button class="btn-edit" onclick="editCareer(this)">수정</button>
+            <button class="btn-edit" onclick="editCareer(this)">Edit</button>
         `;
         careerList.appendChild(newCareer);
-        alert('경력이 추가되었습니다.');
+        alert('Career has been added.');
     }
 }
 
-// 자격증 추가 기능
+// Add license functionality
 function addLicense() {
-    const licenseName = prompt('자격증명을 입력하세요:');
-    const issueDate = prompt('취득일을 입력하세요: (예: 2022.06)');
-    const expireDate = prompt('유효기간을 입력하세요: (예: 2024.06)');
+    const licenseName = prompt('Enter license name:');
+    const issueDate = prompt('Enter issue date (e.g., 2022.06):');
+    const expireDate = prompt('Enter expiration date (e.g., 2024.06):');
     
     if (licenseName && issueDate) {
         const license = {
@@ -618,7 +618,7 @@ function addLicense() {
             addedDate: new Date().toISOString()
         };
         
-        // localStorage에 저장
+        // Save to localStorage
         saveLicenseItem(license);
         
         const licenseList = document.getElementById('license-list');
@@ -627,33 +627,33 @@ function addLicense() {
         newLicense.innerHTML = `
             <div class="license-info">
                 <h4>${licenseName}</h4>
-                <p>취득일: ${issueDate}</p>
-                ${expireDate ? `<p>유효기간: ${expireDate}</p>` : ''}
+                <p>Issue date: ${issueDate}</p>
+                ${expireDate ? `<p>Expiration: ${expireDate}</p>` : ''}
             </div>
-            <button class="btn-edit" onclick="editLicense(this)">수정</button>
+            <button class="btn-edit" onclick="editLicense(this)">Edit</button>
         `;
         licenseList.appendChild(newLicense);
-        alert('자격증이 추가되었습니다.');
+        alert('License has been added.');
     }
 }
 
-// 신청 완료 시뮬레이션 (데모용)
+// Application completion simulation (for demo)
 function simulateApplication() {
-    // 완료 페이지에 정보 업데이트
+    // Update information on completion page
     const hospital = document.getElementById('completion-hospital');
     const date = document.getElementById('completion-date');
     const rate = document.getElementById('completion-rate');
     const total = document.getElementById('completion-total');
     
-    if (hospital) hospital.textContent = '그랜드 안과';
-    if (date) date.textContent = '2024년 1월 20일 (토) 14:00 - 16:00';
-    if (rate) rate.textContent = '25,000원';
-    if (total) total.textContent = '50,000원';
+    if (hospital) hospital.textContent = 'Grand Eye Clinic';
+    if (date) date.textContent = 'January 20, 2024 (Sat) 14:00 - 16:00';
+    if (rate) rate.textContent = '$25/hr';
+    if (total) total.textContent = '$50';
     
     showPage('completion');
 }
 
-// 편집 버튼 이벤트 핸들러들
+// Edit button event handlers
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('btn-edit')) {
         const parentItem = e.target.closest('.info-item, .career-item, .license-item');
@@ -669,16 +669,16 @@ document.addEventListener('click', function(e) {
         const section = e.target.closest('.profile-section');
         if (section) {
             const sectionTitle = section.querySelector('h3').textContent;
-            if (sectionTitle.includes('경력')) {
+            if (sectionTitle.includes('Career') || sectionTitle.includes('경력') || sectionTitle.toLowerCase().includes('career')) {
                 addCareer();
-            } else if (sectionTitle.includes('자격증')) {
+            } else if (sectionTitle.includes('License') || sectionTitle.includes('자격증') || sectionTitle.toLowerCase().includes('license')) {
                 addLicense();
             }
         }
     }
 });
 
-// 초기화 완료 후 첫 번째 날짜 자동 선택
+// Automatically select first date after initialization
 setTimeout(() => {
     const firstDay = document.querySelector('.calendar-day');
     if (firstDay) {
@@ -686,14 +686,14 @@ setTimeout(() => {
     }
 }, 100);
 
-// 데이터 저장/로드 유틸리티 함수들
+// Data save/load utility functions
 function saveUserProfile(profile) {
     try {
         localStorage.setItem(STORAGE_KEYS.USER_PROFILE, JSON.stringify(profile));
-        console.log('사용자 프로필이 저장되었습니다:', profile);
+        console.log('User profile has been saved:', profile);
     } catch (error) {
-        console.error('프로필 저장 중 오류:', error);
-        alert('프로필 저장 중 오류가 발생했습니다.');
+        console.error('Error saving profile:', error);
+        alert('An error occurred while saving profile.');
     }
 }
 
@@ -707,13 +707,13 @@ function loadUserProfile() {
         }
         return null;
     } catch (error) {
-        console.error('프로필 로드 중 오류:', error);
+        console.error('Error loading profile:', error);
         return null;
     }
 }
 
 function updateProfileDisplay(profile) {
-    // 프로필 페이지의 기본 정보 업데이트
+    // Update basic information on profile page
     const nameElement = document.getElementById('profile-name');
     const emailElement = document.getElementById('profile-email');
     const phoneElement = document.getElementById('profile-phone');
@@ -722,7 +722,7 @@ function updateProfileDisplay(profile) {
     if (emailElement) emailElement.textContent = profile.email;
     if (phoneElement) phoneElement.textContent = profile.phone;
     
-    // 회원가입 폼에도 정보 미리 채우기 (수정 시)
+    // Pre-fill information in signup form (when editing)
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const phoneInput = document.getElementById('phone');
@@ -737,12 +737,12 @@ function updateProfileDisplay(profile) {
 function saveCareerItem(career) {
     try {
         let careerList = JSON.parse(localStorage.getItem(STORAGE_KEYS.CAREER_LIST) || '[]');
-        career.id = Date.now(); // 고유 ID 생성
+        career.id = Date.now(); // Generate unique ID
         careerList.push(career);
         localStorage.setItem(STORAGE_KEYS.CAREER_LIST, JSON.stringify(careerList));
-        console.log('경력이 저장되었습니다:', career);
+        console.log('Career has been saved:', career);
     } catch (error) {
-        console.error('경력 저장 중 오류:', error);
+        console.error('Error saving career:', error);
     }
 }
 
@@ -751,7 +751,7 @@ function loadCareerList() {
         const careerList = JSON.parse(localStorage.getItem(STORAGE_KEYS.CAREER_LIST) || '[]');
         return careerList;
     } catch (error) {
-        console.error('경력 로드 중 오류:', error);
+        console.error('Error loading career:', error);
         return [];
     }
 }
@@ -759,12 +759,12 @@ function loadCareerList() {
 function saveLicenseItem(license) {
     try {
         let licenseList = JSON.parse(localStorage.getItem(STORAGE_KEYS.LICENSE_LIST) || '[]');
-        license.id = Date.now(); // 고유 ID 생성
+        license.id = Date.now(); // Generate unique ID
         licenseList.push(license);
         localStorage.setItem(STORAGE_KEYS.LICENSE_LIST, JSON.stringify(licenseList));
-        console.log('자격증이 저장되었습니다:', license);
+        console.log('License has been saved:', license);
     } catch (error) {
-        console.error('자격증 저장 중 오류:', error);
+        console.error('Error saving license:', error);
     }
 }
 
@@ -773,18 +773,18 @@ function loadLicenseList() {
         const licenseList = JSON.parse(localStorage.getItem(STORAGE_KEYS.LICENSE_LIST) || '[]');
         return licenseList;
     } catch (error) {
-        console.error('자격증 로드 중 오류:', error);
+        console.error('Error loading license:', error);
         return [];
     }
 }
 
 function clearAllData() {
-    if (confirm('모든 저장된 데이터를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
+    if (confirm('Are you sure you want to delete all saved data? This action cannot be undone.')) {
         Object.values(STORAGE_KEYS).forEach(key => {
             localStorage.removeItem(key);
         });
-        alert('모든 데이터가 삭제되었습니다.');
-        location.reload(); // 페이지 새로고침
+        alert('All data has been deleted.');
+        location.reload(); // Refresh page
     }
 }
 
@@ -808,23 +808,23 @@ function exportData() {
         link.click();
         
         URL.revokeObjectURL(url);
-        alert('데이터가 JSON 파일로 내보내졌습니다.');
+        alert('Data has been exported to JSON file.');
     } catch (error) {
-        console.error('데이터 내보내기 오류:', error);
-        alert('데이터 내보내기 중 오류가 발생했습니다.');
+        console.error('Data export error:', error);
+        alert('An error occurred while exporting data.');
     }
 }
 
-// 모든 저장된 데이터를 로드하고 화면에 표시
+// Load all saved data and display on screen
 function loadAndDisplayAllData() {
-    // 사용자 프로필 로드
+    // Load user profile
     loadUserProfile();
     
-    // 경력 목록 로드 및 표시
+    // Load and display career list
     const careerList = loadCareerList();
     const careerContainer = document.getElementById('career-list');
     if (careerContainer && careerList.length > 0) {
-        // 기존 샘플 데이터 제거 (첫 번째 자식만 유지)
+        // Remove existing sample data (keep only first child)
         const sampleCareer = careerContainer.querySelector('.career-item');
         if (sampleCareer) {
             sampleCareer.style.display = 'none';
@@ -836,20 +836,20 @@ function loadAndDisplayAllData() {
             careerElement.innerHTML = `
                 <div class="career-info">
                     <h4>${career.hospital}</h4>
-                    <p>기간: ${career.period}</p>
-                    <p>담당: ${career.department}</p>
+                    <p>Period: ${career.period}</p>
+                    <p>Department: ${career.department}</p>
                 </div>
-                <button class="btn-edit" onclick="editCareer(this)">수정</button>
+                <button class="btn-edit" onclick="editCareer(this)">Edit</button>
             `;
             careerContainer.appendChild(careerElement);
         });
     }
     
-    // 자격증 목록 로드 및 표시
+    // Load and display license list
     const licenseList = loadLicenseList();
     const licenseContainer = document.getElementById('license-list');
     if (licenseContainer && licenseList.length > 0) {
-        // 기존 샘플 데이터 제거 (첫 번째 자식만 유지)
+        // Remove existing sample data (keep only first child)
         const sampleLicense = licenseContainer.querySelector('.license-item');
         if (sampleLicense) {
             sampleLicense.style.display = 'none';
@@ -861,24 +861,24 @@ function loadAndDisplayAllData() {
             licenseElement.innerHTML = `
                 <div class="license-info">
                     <h4>${license.name}</h4>
-                    <p>취득일: ${license.issueDate}</p>
-                    ${license.expireDate ? `<p>유효기간: ${license.expireDate}</p>` : ''}
+                    <p>Issue date: ${license.issueDate}</p>
+                    ${license.expireDate ? `<p>Expiration: ${license.expireDate}</p>` : ''}
                 </div>
-                <button class="btn-edit" onclick="editLicense(this)">수정</button>
+                <button class="btn-edit" onclick="editLicense(this)">Edit</button>
             `;
             licenseContainer.appendChild(licenseElement);
         });
     }
 }
 
-// 샘플 통역사 데이터
+// Sample interpreter data
 const sampleInterpreters = [
     {
         id: 1,
-        name: '김영희',
+        name: 'Emily Kim',
         languages: ['korean', 'english'],
         specialties: ['ophthalmology', 'cardiology'],
-        location: '서울 강남구',
+        location: 'Seoul Gangnam-gu',
         distance: 2.5,
         hourlyRate: 30000,
         rating: 4.9,
@@ -890,10 +890,10 @@ const sampleInterpreters = [
     },
     {
         id: 2,
-        name: '이철수',
+        name: 'Charles Lee',
         languages: ['korean', 'chinese'],
         specialties: ['surgery', 'orthopedics'],
-        location: '서울 서초구',
+        location: 'Seoul Seocho-gu',
         distance: 3.2,
         hourlyRate: 35000,
         rating: 4.7,
@@ -905,10 +905,10 @@ const sampleInterpreters = [
     },
     {
         id: 3,
-        name: '박미나',
+        name: 'Mina Park',
         languages: ['korean', 'japanese'],
         specialties: ['pediatrics', 'dermatology'],
-        location: '서울 송파구',
+        location: 'Seoul Songpa-gu',
         distance: 5.1,
         hourlyRate: 28000,
         rating: 4.8,
@@ -920,17 +920,17 @@ const sampleInterpreters = [
     }
 ];
 
-// 검색 및 필터링 관련 함수
+// Search and filtering related functions
 let currentFilters = {};
 let selectedRating = 0;
 
-// 전문 분야 태그 클릭 처리
+// Handle specialty tag clicks
 function toggleSpecialtyTag(tag) {
     tag.classList.toggle('active');
     searchInterpreters();
 }
 
-// 평점 선택 처리
+// Handle rating selection
 function selectRating(rating) {
     selectedRating = rating;
     const stars = document.querySelectorAll('.star');
@@ -944,10 +944,10 @@ function selectRating(rating) {
         }
     });
     
-    ratingText.textContent = `${rating}점 이상`;
+    ratingText.textContent = `${rating} stars and above`;
 }
 
-// 거리 슬라이더 업데이트
+// Update distance slider
 function updateDistanceValue() {
     const slider = document.getElementById('distance-range');
     const valueDisplay = document.getElementById('distance-value');
@@ -956,7 +956,7 @@ function updateDistanceValue() {
     }
 }
 
-// 통역사 검색 함수
+// Interpreter search function
 function searchInterpreters() {
     const filters = collectFilters();
     const filteredInterpreters = filterInterpreters(sampleInterpreters, filters);
@@ -966,7 +966,7 @@ function searchInterpreters() {
     updateResultsCount(sortedInterpreters.length);
 }
 
-// 필터 수집
+// Collect filters
 function collectFilters() {
     return {
         sourceLanguage: document.getElementById('source-language')?.value,
@@ -985,35 +985,35 @@ function collectFilters() {
     };
 }
 
-// 통역사 필터링
+// Filter interpreters
 function filterInterpreters(interpreters, filters) {
     return interpreters.filter(interpreter => {
-        // 언어 조합 검사
+        // Check language combination
         if (filters.sourceLanguage && filters.targetLanguage) {
             const hasLanguages = interpreter.languages.includes(filters.sourceLanguage) && 
                                interpreter.languages.includes(filters.targetLanguage);
             if (!hasLanguages) return false;
         }
         
-        // 전문 분야 검사
+        // Check specialties
         if (filters.specialties.length > 0) {
             const hasSpecialty = filters.specialties.some(specialty => 
                 interpreter.specialties.includes(specialty));
             if (!hasSpecialty) return false;
         }
         
-        // 거리 검사
+        // Check distance
         if (interpreter.distance > filters.distance) return false;
         
-        // 시급 범위 검사
+        // Check hourly rate range
         if (interpreter.hourlyRate < filters.minRate || interpreter.hourlyRate > filters.maxRate) {
             return false;
         }
         
-        // 평점 검사
+        // Check rating
         if (interpreter.rating < filters.minRating) return false;
         
-        // 예약 방식 검사
+        // Check booking method
         if (!filters.instantBooking && interpreter.instantBooking) return false;
         if (!filters.requestBooking && !interpreter.instantBooking) return false;
         
@@ -1021,7 +1021,7 @@ function filterInterpreters(interpreters, filters) {
     });
 }
 
-// 통역사 정렬
+// Sort interpreters
 function sortInterpreters(interpreters, sortBy) {
     const sorted = [...interpreters];
     
@@ -1041,7 +1041,7 @@ function sortInterpreters(interpreters, sortBy) {
     }
 }
 
-// 검색 결과 표시
+// Display search results
 function displaySearchResults(interpreters) {
     const resultsContainer = document.getElementById('search-results');
     if (!resultsContainer) return;
@@ -1050,8 +1050,8 @@ function displaySearchResults(interpreters) {
         resultsContainer.innerHTML = `
             <div class="no-results">
                 <div class="no-results-icon">🔍</div>
-                <h3>검색 결과가 없습니다</h3>
-                <p>검색 조건을 조정해보세요.</p>
+                <h3>No search results found</h3>
+                <p>Please adjust your search criteria.</p>
             </div>
         `;
         return;
@@ -1071,46 +1071,46 @@ function displaySearchResults(interpreters) {
                     <div class="interpreter-rating">
                         <span class="rating-stars">${'⭐'.repeat(Math.floor(interpreter.rating))}</span>
                         <span class="rating-number">${interpreter.rating}</span>
-                        <span class="review-count">(${interpreter.reviewCount}개 리뷰)</span>
+                        <span class="review-count">(${interpreter.reviewCount} reviews)</span>
                     </div>
                 </div>
                 <div class="interpreter-status">
                     ${interpreter.instantBooking ? 
-                        '<span class="status-badge instant">⚡ 즉시 예약</span>' : 
-                        '<span class="status-badge request">📨 요청 예약</span>'
+                        '<span class="status-badge instant">⚡ Instant booking</span>' : 
+                        '<span class="status-badge request">📨 Request booking</span>'
                     }
                 </div>
             </div>
             
             <div class="interpreter-details">
                 <div class="detail-item">
-                    <span class="detail-label">전문 분야:</span>
+                    <span class="detail-label">Specialties:</span>
                     <span class="detail-value">${interpreter.specialties.map(s => getSpecialtyName(s)).join(', ')}</span>
                 </div>
                 <div class="detail-item">
-                    <span class="detail-label">위치:</span>
+                    <span class="detail-label">Location:</span>
                     <span class="detail-value">${interpreter.location} (${interpreter.distance}km)</span>
                 </div>
                 <div class="detail-item">
-                    <span class="detail-label">시급:</span>
-                    <span class="detail-value hourly-rate">₩${interpreter.hourlyRate.toLocaleString()}/시간</span>
+                    <span class="detail-label">Hourly rate:</span>
+                    <span class="detail-value hourly-rate">$${(interpreter.hourlyRate/1000).toFixed(0)}/hour</span>
                 </div>
                 <div class="detail-item">
-                    <span class="detail-label">경력:</span>
-                    <span class="detail-value">${interpreter.experience}년</span>
+                    <span class="detail-label">Experience:</span>
+                    <span class="detail-value">${interpreter.experience} years</span>
                 </div>
             </div>
             
             <div class="interpreter-actions">
                 <button class="btn-secondary" onclick="viewInterpreterProfile(${interpreter.id})">
-                    프로필 보기
+                    View Profile
                 </button>
                 ${interpreter.instantBooking ? 
                     `<button class="btn-primary" onclick="instantBooking(${interpreter.id})">
-                        ⚡ 즉시 예약
+                        ⚡ Instant Booking
                     </button>` :
                     `<button class="btn-primary" onclick="requestBooking(${interpreter.id})">
-                        📨 예약 요청
+                        📨 Request Booking
                     </button>`
                 }
             </div>
@@ -1118,46 +1118,46 @@ function displaySearchResults(interpreters) {
     `).join('');
 }
 
-// 언어명 변환
+// Language name conversion
 function getLanguageName(lang) {
     const names = {
-        korean: '한국어',
-        english: '영어',
-        chinese: '중국어',
-        japanese: '일본어',
-        spanish: '스페인어',
-        french: '프랑스어'
+        korean: 'Korean',
+        english: 'English',
+        chinese: 'Chinese',
+        japanese: 'Japanese',
+        spanish: 'Spanish',
+        french: 'French'
     };
     return names[lang] || lang;
 }
 
-// 전문분야명 변환
+// Specialty name conversion
 function getSpecialtyName(specialty) {
     const names = {
-        ophthalmology: '안과',
-        cardiology: '심장내과',
-        orthopedics: '정형외과',
-        pediatrics: '소아과',
-        dermatology: '피부과',
-        neurology: '신경과',
-        surgery: '외과',
-        internal: '내과',
-        emergency: '응급실'
+        ophthalmology: 'Ophthalmology',
+        cardiology: 'Cardiology',
+        orthopedics: 'Orthopedics',
+        pediatrics: 'Pediatrics',
+        dermatology: 'Dermatology',
+        neurology: 'Neurology',
+        surgery: 'Surgery',
+        internal: 'Internal Medicine',
+        emergency: 'Emergency'
     };
     return names[specialty] || specialty;
 }
 
-// 결과 개수 업데이트
+// Update results count
 function updateResultsCount(count) {
     const countElement = document.getElementById('results-count');
     if (countElement) {
-        countElement.textContent = `검색 결과: ${count}명`;
+        countElement.textContent = `Search results: ${count} interpreters`;
     }
 }
 
-// 필터 초기화
+// Reset filters
 function resetFilters() {
-    // 모든 폼 요소 초기화
+    // Reset all form elements
     document.getElementById('source-language').value = '';
     document.getElementById('target-language').value = '';
     document.querySelectorAll('.specialty-tag.active').forEach(tag => tag.classList.remove('active'));
@@ -1171,38 +1171,38 @@ function resetFilters() {
     document.getElementById('instant-booking').checked = true;
     document.getElementById('request-booking').checked = true;
     
-    // 평점 초기화
+    // Reset rating
     selectedRating = 0;
     document.querySelectorAll('.star').forEach(star => star.classList.remove('active'));
-    document.getElementById('selected-rating').textContent = '평점 선택 안함';
+    document.getElementById('selected-rating').textContent = 'No rating selected';
     
-    // 거리 표시 업데이트
+    // Update distance display
     updateDistanceValue();
     
-    // 검색 재실행
+    // Re-execute search
     searchInterpreters();
 }
 
-// 정렬 변경
+// Change sorting
 function sortResults() {
     searchInterpreters();
 }
 
-// 대시보드 관련 함수
+// Dashboard related functions
 function switchUserType(type) {
-    // 사용자 타입 버튼 업데이트
+    // Update user type buttons
     document.querySelectorAll('.user-type-btn').forEach(btn => {
         btn.classList.remove('active');
     });
     document.querySelector(`[data-type="${type}"]`).classList.add('active');
     
-    // 대시보드 콘텐츠 전환
+    // Switch dashboard content
     document.querySelectorAll('.dashboard-content').forEach(content => {
         content.classList.remove('active');
     });
     document.getElementById(`${type}-dashboard`).classList.add('active');
     
-    // 해당 대시보드 데이터 로드
+    // Load corresponding dashboard data
     if (type === 'hospital') {
         loadHospitalDashboard();
     } else {
@@ -1210,21 +1210,21 @@ function switchUserType(type) {
     }
 }
 
-// 병원 대시보드 로드
+// Load hospital dashboard
 function loadHospitalDashboard() {
-    // 예약 현황 로드
+    // Load booking status
     loadHospitalBookings('upcoming');
 }
 
-// 통역사 대시보드 로드
+// Load interpreter dashboard
 function loadInterpreterDashboard() {
-    // 요청 현황 로드
+    // Load request status
     loadInterpreterRequests('new');
 }
 
-// 예약 필터링
+// Filter bookings
 function filterBookings(status) {
-    // 탭 활성화 업데이트
+    // Update tab activation
     document.querySelectorAll('.status-tab').forEach(tab => {
         tab.classList.remove('active');
     });
@@ -1233,9 +1233,9 @@ function filterBookings(status) {
     loadHospitalBookings(status);
 }
 
-// 요청 필터링
+// Filter requests
 function filterRequests(type) {
-    // 탭 활성화 업데이트
+    // Update tab activation
     document.querySelectorAll('.request-tab').forEach(tab => {
         tab.classList.remove('active');
     });
@@ -1244,32 +1244,32 @@ function filterRequests(type) {
     loadInterpreterRequests(type);
 }
 
-// 병원 예약 목록 로드
+// Load hospital booking list
 function loadHospitalBookings(status) {
     const bookingList = document.getElementById('hospital-booking-list');
     if (!bookingList) return;
     
-    // 샘플 데이터 (실제로는 서버에서 가져옴)
+    // Sample data (actually fetched from server)
     const sampleBookings = {
         upcoming: [
-            { id: 1, interpreter: '김영희', date: '2024-01-20', time: '09:00-12:00', department: '안과', status: 'confirmed' },
-            { id: 2, interpreter: '이철수', date: '2024-01-21', time: '14:00-17:00', department: '외과', status: 'confirmed' }
+            { id: 1, interpreter: 'Emily Kim', date: '2024-01-20', time: '09:00-12:00', department: 'Ophthalmology', status: 'confirmed' },
+            { id: 2, interpreter: 'Charles Lee', date: '2024-01-21', time: '14:00-17:00', department: 'Surgery', status: 'confirmed' }
         ],
         pending: [
-            { id: 3, interpreter: '박미나', date: '2024-01-22', time: '10:00-13:00', department: '소아과', status: 'pending' }
+            { id: 3, interpreter: 'Mina Park', date: '2024-01-22', time: '10:00-13:00', department: 'Pediatrics', status: 'pending' }
         ],
         completed: [
-            { id: 4, interpreter: '김영희', date: '2024-01-15', time: '09:00-12:00', department: '안과', status: 'completed' }
+            { id: 4, interpreter: 'Emily Kim', date: '2024-01-15', time: '09:00-12:00', department: 'Ophthalmology', status: 'completed' }
         ],
         cancelled: [
-            { id: 5, interpreter: '이철수', date: '2024-01-18', time: '14:00-17:00', department: '외과', status: 'cancelled' }
+            { id: 5, interpreter: 'Charles Lee', date: '2024-01-18', time: '14:00-17:00', department: 'Surgery', status: 'cancelled' }
         ]
     };
     
     const bookings = sampleBookings[status] || [];
     
     if (bookings.length === 0) {
-        bookingList.innerHTML = '<p class="no-data">해당 상태의 예약이 없습니다.</p>';
+        bookingList.innerHTML = '<p class="no-data">No bookings with this status.</p>';
         return;
     }
     
@@ -1282,38 +1282,38 @@ function loadHospitalBookings(status) {
                 <span class="booking-status ${booking.status}">${getStatusName(booking.status)}</span>
             </div>
             <div class="booking-actions">
-                <button class="btn-secondary" onclick="viewBookingDetails(${booking.id})">상세보기</button>
+                <button class="btn-secondary" onclick="viewBookingDetails(${booking.id})">View Details</button>
                 ${booking.status === 'upcoming' ? 
-                    '<button class="btn-edit" onclick="editBooking(' + booking.id + ')">수정</button>' : ''
+                    '<button class="btn-edit" onclick="editBooking(' + booking.id + ')">Edit</button>' : ''
                 }
             </div>
         </div>
     `).join('');
 }
 
-// 통역사 요청 목록 로드
+// Load interpreter request list
 function loadInterpreterRequests(type) {
     const requestList = document.getElementById('interpreter-request-list');
     if (!requestList) return;
     
-    // 샘플 데이터
+    // Sample data
     const sampleRequests = {
         new: [
-            { id: 1, hospital: '서울대병원', date: '2024-01-20', time: '09:00-12:00', department: '안과', rate: 30000 },
-            { id: 2, hospital: '연세의료원', date: '2024-01-21', time: '14:00-17:00', department: '외과', rate: 35000 }
+            { id: 1, hospital: 'Seoul National University Hospital', date: '2024-01-20', time: '09:00-12:00', department: 'Ophthalmology', rate: 30 },
+            { id: 2, hospital: 'Yonsei Medical Center', date: '2024-01-21', time: '14:00-17:00', department: 'Surgery', rate: 35 }
         ],
         accepted: [
-            { id: 3, hospital: '서울아산병원', date: '2024-01-22', time: '10:00-13:00', department: '소아과', rate: 28000 }
+            { id: 3, hospital: 'Seoul Asan Medical Center', date: '2024-01-22', time: '10:00-13:00', department: 'Pediatrics', rate: 28 }
         ],
         declined: [
-            { id: 4, hospital: '삼성의료원', date: '2024-01-19', time: '15:00-18:00', department: '내과', rate: 25000 }
+            { id: 4, hospital: 'Samsung Medical Center', date: '2024-01-19', time: '15:00-18:00', department: 'Internal Medicine', rate: 25 }
         ]
     };
     
     const requests = sampleRequests[type] || [];
     
     if (requests.length === 0) {
-        requestList.innerHTML = '<p class="no-data">해당 상태의 요청이 없습니다.</p>';
+        requestList.innerHTML = '<p class="no-data">No requests with this status.</p>';
         return;
     }
     
@@ -1323,67 +1323,67 @@ function loadInterpreterRequests(type) {
                 <h4>${request.hospital}</h4>
                 <p>📅 ${request.date} ${request.time}</p>
                 <p>🏥 ${request.department}</p>
-                <p>💰 ₩${request.rate.toLocaleString()}/시간</p>
+                <p>💰 $${request.rate}/hour</p>
             </div>
             <div class="request-actions">
                 ${type === 'new' ? `
-                    <button class="btn-primary" onclick="acceptRequest(${request.id})">승인</button>
-                    <button class="btn-secondary" onclick="declineRequest(${request.id})">거절</button>
+                    <button class="btn-primary" onclick="acceptRequest(${request.id})">Accept</button>
+                    <button class="btn-secondary" onclick="declineRequest(${request.id})">Decline</button>
                 ` : `
-                    <button class="btn-secondary" onclick="viewRequestDetails(${request.id})">상세보기</button>
+                    <button class="btn-secondary" onclick="viewRequestDetails(${request.id})">View Details</button>
                 `}
             </div>
         </div>
     `).join('');
 }
 
-// 상태명 변환
+// Status name conversion
 function getStatusName(status) {
     const names = {
-        confirmed: '확정',
-        pending: '승인 대기',
-        completed: '완료',
-        cancelled: '취소'
+        confirmed: 'Confirmed',
+        pending: 'Pending Approval',
+        completed: 'Completed',
+        cancelled: 'Cancelled'
     };
     return names[status] || status;
 }
 
-// 예약 관련 함수들
+// Booking related functions
 function createInstantBooking() {
     showPage('booking-request');
-    // 즉시 예약 모드로 설정
+    // Set to instant booking mode
     document.querySelector('input[name="booking-type"][value="instant"]').checked = true;
 }
 
 function createRequestBooking() {
     showPage('booking-request');
-    // 요청 예약 모드로 설정
+    // Set to request booking mode
     document.querySelector('input[name="booking-type"][value="request"]').checked = true;
 }
 
 function instantBooking(interpreterId) {
     showPage('booking-request');
-    // 선택된 통역사 정보로 폼 미리 채우기
+    // Pre-fill form with selected interpreter information
     const interpreter = sampleInterpreters.find(i => i.id === interpreterId);
     if (interpreter) {
-        // 즉시 예약 모드로 설정
+        // Set to instant booking mode
         document.querySelector('input[name="booking-type"][value="instant"]').checked = true;
-        alert(`${interpreter.name} 통역사의 즉시 예약을 진행합니다.`);
+        alert(`Proceeding with instant booking for interpreter ${interpreter.name}.`);
     }
 }
 
 function requestBooking(interpreterId) {
     showPage('booking-request');
-    // 선택된 통역사 정보로 폼 미리 채우기
+    // Pre-fill form with selected interpreter information
     const interpreter = sampleInterpreters.find(i => i.id === interpreterId);
     if (interpreter) {
-        // 요청 예약 모드로 설정
+        // Set to request booking mode
         document.querySelector('input[name="booking-type"][value="request"]').checked = true;
-        alert(`${interpreter.name} 통역사에게 예약 요청을 보냅니다.`);
+        alert(`Sending booking request to interpreter ${interpreter.name}.`);
     }
 }
 
-// 지도 관련 함수들
+// Map related functions
 function openMapSearch() {
     const modal = document.getElementById('map-modal');
     if (modal) {
@@ -1403,7 +1403,7 @@ function searchLocation() {
     const selectedLocationText = document.getElementById('selected-location-text');
     
     if (input && selectedLocationText) {
-        selectedLocationText.textContent = input.value || '위치를 선택해주세요';
+        selectedLocationText.textContent = input.value || 'Please select a location';
     }
 }
 
@@ -1418,7 +1418,7 @@ function confirmLocation() {
     closeMapModal();
 }
 
-// 반복 예약 관련
+// Recurring booking related
 function toggleRecurringOptions() {
     const checkbox = document.getElementById('is-recurring');
     const options = document.getElementById('recurring-options');
@@ -1428,44 +1428,44 @@ function toggleRecurringOptions() {
     }
 }
 
-// 기타 유틸리티 함수들
+// Other utility functions
 function viewInterpreterProfile(interpreterId) {
-    alert(`통역사 프로필을 표시합니다. (ID: ${interpreterId})`);
+    alert(`Displaying interpreter profile. (ID: ${interpreterId})`);
 }
 
 function acceptRequest(requestId) {
-    alert(`요청을 승인했습니다. (ID: ${requestId})`);
+    alert(`Request approved. (ID: ${requestId})`);
     loadInterpreterRequests('new');
 }
 
 function declineRequest(requestId) {
-    alert(`요청을 거절했습니다. (ID: ${requestId})`);
+    alert(`Request declined. (ID: ${requestId})`);
     loadInterpreterRequests('new');
 }
 
 function viewBookingDetails(bookingId) {
-    alert(`예약 상세 정보를 표시합니다. (ID: ${bookingId})`);
+    alert(`Displaying booking details. (ID: ${bookingId})`);
 }
 
 function editBooking(bookingId) {
-    alert(`예약을 수정합니다. (ID: ${bookingId})`);
+    alert(`Editing booking. (ID: ${bookingId})`);
 }
 
 function viewRequestDetails(requestId) {
-    alert(`요청 상세 정보를 표시합니다. (ID: ${requestId})`);
+    alert(`Displaying request details. (ID: ${requestId})`);
 }
 
 function manageRepeatingBookings() {
-    alert('반복 예약 관리 페이지로 이동합니다.');
+    alert('Navigating to recurring booking management page.');
 }
 
-// 강남 그랜드 안과 예약 내역 관련 함수들
+// Gangnam Grand Eye Clinic booking history related functions
 function loadGangnamBookings() {
     filterGangnamBookings('all');
 }
 
 function filterGangnamBookings(status) {
-    // 탭 활성화 업데이트
+    // Update tab activation
     document.querySelectorAll('.status-tab').forEach(tab => {
         tab.classList.remove('active');
     });
@@ -1485,7 +1485,7 @@ function displayGangnamBookings(bookings) {
     if (!bookingsList) return;
     
     if (bookings.length === 0) {
-        bookingsList.innerHTML = '<p class="no-data">해당 상태의 예약이 없습니다.</p>';
+        bookingsList.innerHTML = '<p class="no-data">No bookings with this status.</p>';
         return;
     }
     
@@ -1493,23 +1493,23 @@ function displayGangnamBookings(bookings) {
         <div class="booking-item gangnam-booking">
             <div class="booking-info">
                 <div class="booking-header">
-                    <h4>환자: ${booking.patient} (${getNationalityName(booking.nationality)})</h4>
+                    <h4>Patient: ${booking.patient} (${getNationalityName(booking.nationality)})</h4>
                     <span class="booking-status ${booking.status}">${getStatusKoreanName(booking.status)}</span>
                 </div>
                 <div class="booking-details">
                     <p><span class="icon">📅</span> ${formatDateKorean(booking.date)} ${booking.time}</p>
                     <p><span class="icon">🏥</span> ${booking.procedure}</p>
-                    <p><span class="icon">💰</span> 시급: ${booking.rate} / 총액: ${booking.total}</p>
+                    <p><span class="icon">💰</span> Rate: ${booking.rate} / Total: ${booking.total}</p>
                     <p><span class="icon">📝</span> ${booking.notes}</p>
                 </div>
             </div>
             <div class="booking-actions">
-                <button class="btn-secondary" onclick="viewBookingDetails(${booking.id})">상세보기</button>
+                <button class="btn-secondary" onclick="viewBookingDetails(${booking.id})">View Details</button>
                 ${booking.status === 'upcoming' ? 
-                    `<button class="btn-edit" onclick="editGangnamBooking(${booking.id})">수정</button>` : ''
+                    `<button class="btn-edit" onclick="editGangnamBooking(${booking.id})">Edit</button>` : ''
                 }
                 ${booking.status === 'completed' ? 
-                    `<button class="btn-add" onclick="writeReview(${booking.id})">리뷰 작성</button>` : ''
+                    `<button class="btn-add" onclick="writeReview(${booking.id})">Write Review</button>` : ''
                 }
             </div>
         </div>
@@ -1518,28 +1518,28 @@ function displayGangnamBookings(bookings) {
 
 function getNationalityName(nationality) {
     const names = {
-        'us': '미국',
-        'usa': '미국',
-        '미국': '미국',
-        'china': '중국',
-        'chinese': '중국',
-        '중국': '중국',
-        'japan': '일본',
-        'japanese': '일본',
-        '일본': '일본',
-        'korea': '한국',
-        'korean': '한국',
-        '한국': '한국'
+        'us': 'USA',
+        'usa': 'USA',
+        'usa_kr': 'USA',
+        'china': 'China',
+        'chinese': 'China',
+        'china_kr': 'China',
+        'japan': 'Japan',
+        'japanese': 'Japan',
+        'japan_kr': 'Japan',
+        'korea': 'Korea',
+        'korean': 'Korea',
+        'korea_kr': 'Korea'
     };
     return names[nationality.toLowerCase()] || nationality;
 }
 
 function getStatusKoreanName(status) {
     const names = {
-        'upcoming': '예정',
-        'completed': '완료',
-        'cancelled': '취소',
-        'pending': '대기'
+        'upcoming': 'Scheduled',
+        'completed': 'Completed',
+        'cancelled': 'Cancelled',
+        'pending': 'Pending'
     };
     return names[status] || status;
 }
@@ -1548,62 +1548,62 @@ function formatDateKorean(dateString) {
     const date = new Date(dateString);
     const month = date.getMonth() + 1;
     const day = date.getDate();
-    const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const dayName = dayNames[date.getDay()];
     
-    return `${month}월 ${day}일 (${dayName})`;
+    return `${month}/${day} (${dayName})`;
 }
 
 function editGangnamBooking(bookingId) {
     const booking = gangnamGrandEyeBookings.find(b => b.id === bookingId);
     if (booking) {
-        alert(`예약 수정: ${booking.patient} 환자의 ${booking.procedure} 예약을 수정합니다.`);
-        // 실제 구현에서는 수정 모달이나 폼을 표시
+        alert(`Edit booking: Editing ${booking.procedure} appointment for patient ${booking.patient}.`);
+        // In actual implementation, show edit modal or form
     }
 }
 
 function writeReview(bookingId) {
     const booking = gangnamGrandEyeBookings.find(b => b.id === bookingId);
     if (booking) {
-        const rating = prompt('평점을 입력해주세요 (1-5점):');
-        const comment = prompt('리뷰를 작성해주세요:');
+        const rating = prompt('Please enter rating (1-5 points):');
+        const comment = prompt('Please write a review:');
         
         if (rating && comment) {
-            alert(`리뷰가 작성되었습니다!\n평점: ${rating}점\n내용: ${comment}`);
-            // 실제 구현에서는 서버에 리뷰 데이터 전송
+            alert(`Review has been written!\nRating: ${rating} points\nContent: ${comment}`);
+            // In actual implementation, send review data to server
         }
     }
 }
 
-// 대시보드 관련 함수들
+// Dashboard related functions
 function loadDashboardData() {
     loadInterpreterRequests('new');
     loadTodaySchedule();
 }
 
 function loadInterpreterRequests(type) {
-    // 샘플 요청 데이터
+    // Sample request data
     const sampleRequests = {
         new: [
             {
                 id: 1,
-                hospital: '강남 그랜드 안과',
+                hospital: 'Gangnam Grand Eye Clinic',
                 date: '2024-01-22',
                 time: '09:00-12:00',
-                department: '안과',
-                procedure: '백내장 수술 상담',
-                patient: '김환자 (미국)',
+                department: 'Ophthalmology',
+                procedure: 'Cataract surgery consultation',
+                patient: 'John Kim (USA)',
                 rate: 30000,
                 urgent: false
             },
             {
                 id: 2,
-                hospital: '강남 그랜드 안과',
+                hospital: 'Gangnam Grand Eye Clinic',
                 date: '2024-01-25',
                 time: '14:00-16:00',
-                department: '안과',
-                procedure: '라식 수술 상담',
-                patient: '이환자 (중국)',
+                department: 'Ophthalmology',
+                procedure: 'LASIK surgery consultation',
+                patient: 'David Lee (China)',
                 rate: 25000,
                 urgent: true
             }
@@ -1611,12 +1611,12 @@ function loadInterpreterRequests(type) {
         accepted: [
             {
                 id: 3,
-                hospital: '강남 그랜드 안과',
+                hospital: 'Gangnam Grand Eye Clinic',
                 date: '2024-01-28',
                 time: '10:00-13:00',
-                department: '안과',
-                procedure: '정기 검진',
-                patient: '박환자 (일본)',
+                department: 'Ophthalmology',
+                procedure: 'Regular checkup',
+                patient: 'Michael Park (Japan)',
                 rate: 25000,
                 urgent: false
             }
@@ -1624,12 +1624,12 @@ function loadInterpreterRequests(type) {
         upcoming: [
             {
                 id: 4,
-                hospital: '강남 그랜드 안과',
+                hospital: 'Gangnam Grand Eye Clinic',
                 date: '2024-01-30',
                 time: '15:00-17:00',
-                department: '안과',
-                procedure: '백내장 수술',
-                patient: '정환자 (미국)',
+                department: 'Ophthalmology',
+                procedure: 'Cataract surgery',
+                patient: 'James Jung (USA)',
                 rate: 35000,
                 urgent: false
             }
@@ -1645,7 +1645,7 @@ function displayDashboardRequests(requests) {
     if (!requestList) return;
     
     if (requests.length === 0) {
-        requestList.innerHTML = '<p class="no-data">요청이 없습니다.</p>';
+        requestList.innerHTML = '<p class="no-data">No requests.</p>';
         return;
     }
     
@@ -1653,17 +1653,17 @@ function displayDashboardRequests(requests) {
         <div class="request-item dashboard-request">
             <div class="request-header">
                 <h4>${request.hospital}</h4>
-                ${request.urgent ? '<span class="urgent-badge">긴급</span>' : ''}
+                ${request.urgent ? '<span class="urgent-badge">Urgent</span>' : ''}
             </div>
             <div class="request-details">
                 <p><span class="icon">📅</span> ${formatDateKorean(request.date)} ${request.time}</p>
                 <p><span class="icon">🏥</span> ${request.procedure}</p>
                 <p><span class="icon">👤</span> ${request.patient}</p>
-                <p><span class="icon">💰</span> ₩${request.rate.toLocaleString()}/시간</p>
+                <p><span class="icon">💰</span> $${request.rate}/hour</p>
             </div>
             <div class="request-actions">
-                <button class="btn-primary" onclick="acceptRequest(${request.id})">승인</button>
-                <button class="btn-secondary" onclick="declineRequest(${request.id})">거절</button>
+                <button class="btn-primary" onclick="acceptRequest(${request.id})">Accept</button>
+                <button class="btn-secondary" onclick="declineRequest(${request.id})">Decline</button>
             </div>
         </div>
     `).join('');
@@ -1673,11 +1673,11 @@ function loadTodaySchedule() {
     const todaySchedule = document.getElementById('today-schedule');
     if (!todaySchedule) return;
     
-    // 오늘 날짜의 예약 찾기
+    // Find today's appointments
     const today = new Date();
     const todayString = formatDateForKey(today);
     
-    // 강남 그랜드 안과에서 오늘 예약된 일정 찾기
+    // Find today's scheduled appointments at Gangnam Grand Eye Clinic
     const todayBookings = gangnamGrandEyeBookings.filter(booking => 
         booking.date === todayString && booking.status === 'upcoming'
     );
@@ -1685,8 +1685,8 @@ function loadTodaySchedule() {
     if (todayBookings.length === 0) {
         todaySchedule.innerHTML = `
             <div class="no-schedule">
-                <p>📅 오늘 예정된 일정이 없습니다.</p>
-                <p>편안한 하루 보내세요!</p>
+                <p>📅 No appointments scheduled for today.</p>
+                <p>Have a relaxing day!</p>
             </div>
         `;
         return;
@@ -1697,14 +1697,14 @@ function loadTodaySchedule() {
             <div class="schedule-time">${booking.time.split('-')[0]}</div>
             <div class="schedule-details">
                 <div class="schedule-title">${booking.procedure}</div>
-                <div class="schedule-subtitle">${booking.patient} (${getNationalityName(booking.nationality)}) - 강남 그랜드 안과</div>
+                <div class="schedule-subtitle">${booking.patient} (${getNationalityName(booking.nationality)}) - Gangnam Grand Eye Clinic</div>
             </div>
         </div>
     `).join('');
 }
 
 function filterRequests(type) {
-    // 탭 활성화 업데이트
+    // Update tab activation
     document.querySelectorAll('.request-tab').forEach(tab => {
         tab.classList.remove('active');
     });
@@ -1714,16 +1714,16 @@ function filterRequests(type) {
 }
 
 function acceptRequest(requestId) {
-    alert(`요청 ID ${requestId}를 승인했습니다.`);
-    // 실제 구현에서는 서버에 승인 요청 전송
-    loadInterpreterRequests('new'); // 목록 새로고침
+    alert(`Request ID ${requestId} has been approved.`);
+    // In actual implementation, send approval request to server
+    loadInterpreterRequests('new'); // Refresh list
 }
 
 function declineRequest(requestId) {
-    const reason = prompt('거절 사유를 입력해주세요:');
+    const reason = prompt('Please enter reason for decline:');
     if (reason) {
-        alert(`요청 ID ${requestId}를 거절했습니다.\n사유: ${reason}`);
-        // 실제 구현에서는 서버에 거절 요청 전송
-        loadInterpreterRequests('new'); // 목록 새로고침
+        alert(`Request ID ${requestId} has been declined.\nReason: ${reason}`);
+        // In actual implementation, send decline request to server
+        loadInterpreterRequests('new'); // Refresh list
     }
 }

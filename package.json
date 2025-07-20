@@ -1,7 +1,7 @@
 {
   "name": "patient-care-app",
   "version": "1.0.0",
-  "description": "통역사 전용 예약 관리 앱",
+  "description": "Interpreter-specific appointment management app",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -30,6 +30,6 @@
     "hospital",
     "translation"
   ],
-  "author": "통역사 앱 개발팀",
+  "author": "Interpreter App Development Team",
   "license": "MIT"
 }
