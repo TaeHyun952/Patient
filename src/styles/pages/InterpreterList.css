@@ -29,6 +29,29 @@
   font-size: 1rem;
 }
 
+.procedure-context {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #667eea10, #764ba210);
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.context-label {
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 0.875rem;
+}
+
+.context-value {
+  font-weight: 700;
+  color: #667eea;
+  font-size: 0.875rem;
+}
+
 .hospital-info-card {
   margin-bottom: 2rem;
 }

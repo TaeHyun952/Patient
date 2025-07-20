@@ -25,6 +25,52 @@
   font-size: 1rem;
 }
 
+.selected-procedure-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #667eea10, #764ba210);
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.procedure-label {
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 0.875rem;
+}
+
+.procedure-name {
+  font-weight: 700;
+  color: #667eea;
+  font-size: 0.875rem;
+}
+
+.no-hospitals {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+.no-hospitals h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.no-hospitals p {
+  color: #6b7280;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
 .hospitals-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Dashboard from './pages/Dashboard'
 import HospitalSelection from './pages/HospitalSelection'
@@ -23,7 +23,7 @@ function App() {
   })
 
   return (
-    <Router>
+    <BrowserRouter>
       <div className="app">
         <Navbar currentUser={currentUser} />
         <main className="main-content">
@@ -43,7 +43,7 @@ function App() {
           </Routes>
         </main>
       </div>
-    </Router>
+    </BrowserRouter>
   )
 }
 

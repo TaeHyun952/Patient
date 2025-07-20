@@ -12,11 +12,7 @@ const Navbar = ({ currentUser }) => {
       <div className="nav-menu">
         <NavLink to="/" className="nav-item">
           <BarChart3 size={18} />
-          대시보드
-        </NavLink>
-        <NavLink to="/hospitals" className="nav-item">
-          <Building2 size={18} />
-          병원 찾기
+          시술 선택
         </NavLink>
         <NavLink to="/schedule" className="nav-item">
           <Calendar size={18} />

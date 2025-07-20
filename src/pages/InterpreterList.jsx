@@ -9,7 +9,7 @@ import '../styles/pages/InterpreterList.css';
 const InterpreterList = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { hospital } = location.state || {};
+  const { hospital, selectedProcedure } = location.state || {};
   const [selectedInterpreter, setSelectedInterpreter] = useState(null);
 
   if (!hospital) {
@@ -72,7 +72,13 @@ const InterpreterList = () => {
   ];
 
   const handleBookInterpreter = (interpreter) => {
-    navigate('/booking', { state: { hospital, interpreter } });
+    navigate('/booking', { 
+      state: { 
+        hospital, 
+        interpreter, 
+        selectedProcedure 
+      } 
+    });
   };
 
   const handleViewProfile = (interpreter) => {
@@ -80,7 +86,11 @@ const InterpreterList = () => {
   };
 
   const handleBackToHospitals = () => {
-    navigate('/hospitals');
+    navigate('/hospitals', { 
+      state: { 
+        selectedProcedure 
+      } 
+    });
   };
 
   return (
@@ -98,7 +108,17 @@ const InterpreterList = () => {
           </Button>
           <div className="header-content">
             <h1>{hospital.name} 통역사</h1>
-            <p>병원에 배치된 전문 통역사들을 확인하고 예약하세요</p>
+            {selectedProcedure ? (
+              <p>{selectedProcedure.name} 시술을 위한 전문 통역사들을 확인하고 예약하세요</p>
+            ) : (
+              <p>병원에 배치된 전문 통역사들을 확인하고 예약하세요</p>
+            )}
+            {selectedProcedure && (
+              <div className="procedure-context">
+                <span className="context-label">선택된 시술:</span>
+                <span className="context-value">{selectedProcedure.name}</span>
+              </div>
+            )}
           </div>
         </div>
 

@@ -1,5 +1,5 @@
 {
-  "name": "interpreter-app",
+  "name": "patient-care-app",
   "version": "1.0.0",
   "description": "통역사 전용 예약 관리 앱",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "build:vercel": "NODE_ENV=production vite build",
     "preview": "vite preview",
     "start": "vite",
-    "clean": "rm -rf dist",
+    "clean": "if exist dist rd /s /q dist",
     "prebuild": "npm run clean"
   },
   "dependencies": {
