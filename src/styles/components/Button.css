@@ -1,0 +1,650 @@
+/* Button 컴포넌트 스타일 */
+
+/* 기본 버튼 스타일 */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.btn:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Button Variants */
+.btn--primary {
+    background: linear-gradient(135deg, var(--primary-500) 0%, var(--secondary-500) 100%);
+    color: white;
+    border: 1px solid transparent;
+}
+
+.btn--primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.btn--primary:hover {
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn--primary:hover::before {
+    left: 100%;
+}
+
+.btn--primary:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn--secondary {
+    background: white;
+    color: var(--primary-600);
+    border: 2px solid var(--primary-500);
+}
+
+.btn--secondary:hover {
+    background: var(--primary-500);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn--secondary:active {
+    transform: translateY(0);
+}
+
+.btn--success {
+    background: linear-gradient(135deg, var(--success-500) 0%, var(--success-400) 100%);
+    color: white;
+    border: 1px solid transparent;
+}
+
+.btn--success:hover {
+    background: linear-gradient(135deg, var(--success-600) 0%, var(--success-500) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn--warning {
+    background: linear-gradient(135deg, var(--warning-500) 0%, var(--warning-400) 100%);
+    color: white;
+    border: 1px solid transparent;
+}
+
+.btn--warning:hover {
+    background: linear-gradient(135deg, var(--warning-600) 0%, var(--warning-500) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn--error {
+    background: linear-gradient(135deg, var(--error-500) 0%, var(--error-400) 100%);
+    color: white;
+    border: 1px solid transparent;
+}
+
+.btn--error:hover {
+    background: linear-gradient(135deg, var(--error-600) 0%, var(--error-500) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn--ghost {
+    background: transparent;
+    color: var(--gray-700);
+    border: 1px solid var(--gray-300);
+}
+
+.btn--ghost:hover {
+    background: var(--gray-100);
+    border-color: var(--gray-400);
+    transform: translateY(-1px);
+}
+
+.btn--outline {
+    background: transparent;
+    color: var(--primary-600);
+    border: 2px solid var(--primary-500);
+}
+
+.btn--outline:hover {
+    background: var(--primary-50);
+    border-color: var(--primary-600);
+}
+
+.btn--text {
+    background: transparent;
+    color: var(--primary-600);
+    border: none;
+    padding: var(--space-2) var(--space-3);
+}
+
+.btn--text:hover {
+    background: var(--primary-50);
+    color: var(--primary-700);
+}
+
+/* 위험한 액션용 버튼 (초기화 등) */
+.btn--danger {
+    background: transparent;
+    color: var(--error-600);
+    border: 1px solid var(--error-300);
+}
+
+.btn--danger:hover {
+    background: var(--error-50);
+    border-color: var(--error-400);
+    color: var(--error-700);
+    transform: translateY(-1px);
+}
+
+/* Button Sizes */
+.btn--small {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    border-radius: var(--radius-md);
+}
+
+.btn--medium {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-base);
+    border-radius: var(--radius-lg);
+}
+
+.btn--large {
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--text-lg);
+    border-radius: var(--radius-xl);
+}
+
+.btn--extra-large {
+    padding: var(--space-5) var(--space-8);
+    font-size: var(--text-xl);
+    border-radius: var(--radius-xl);
+}
+
+/* Button States */
+.btn--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn--loading {
+    cursor: wait;
+    pointer-events: none;
+}
+
+.btn--full-width {
+    width: 100%;
+}
+
+.btn--icon-only {
+    padding: var(--space-3);
+    border-radius: 50%;
+    aspect-ratio: 1;
+}
+
+.btn--icon-only.btn--small {
+    padding: var(--space-2);
+}
+
+.btn--icon-only.btn--large {
+    padding: var(--space-4);
+}
+
+.btn--icon-only.btn--extra-large {
+    padding: var(--space-5);
+}
+
+/* Icon Positioning */
+.btn--icon-left .btn__icon {
+    order: -1;
+}
+
+.btn--icon-right .btn__icon {
+    order: 1;
+}
+
+/* Button Elements */
+.btn__text {
+    display: inline-block;
+}
+
+.btn__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.btn__icon svg {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.btn__spinner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.btn__spinner-svg {
+    width: 1.2em;
+    height: 1.2em;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.btn__spinner-svg circle {
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}
+
+/* Floating Action Button */
+.btn--fab {
+    position: fixed;
+    bottom: var(--space-6);
+    right: var(--space-6);
+    border-radius: 50%;
+    padding: var(--space-5);
+    box-shadow: var(--shadow-xl);
+    z-index: 1000;
+}
+
+.btn--fab:hover {
+    box-shadow: var(--shadow-2xl);
+    transform: translateY(-4px) scale(1.05);
+}
+
+/* Button Group */
+.btn-group {
+    display: inline-flex;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-group--horizontal {
+    flex-direction: row;
+}
+
+.btn-group--vertical {
+    flex-direction: column;
+}
+
+.btn-group .btn {
+    border-radius: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 0;
+}
+
+.btn-group .btn:first-child {
+    border-top-left-radius: var(--radius-lg);
+    border-bottom-left-radius: var(--radius-lg);
+}
+
+.btn-group .btn:last-child {
+    border-top-right-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+    border-right: none;
+}
+
+.btn-group--vertical .btn {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-group--vertical .btn:first-child {
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+    border-bottom-left-radius: 0;
+}
+
+.btn-group--vertical .btn:last-child {
+    border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+    border-top-right-radius: 0;
+    border-bottom: none;
+}
+
+.btn-group .btn:not(:first-child):not(:last-child) {
+    border-radius: 0;
+}
+
+/* Legacy Button Classes (하위 호환성) */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    user-select: none;
+    background: linear-gradient(135deg, var(--primary-500) 0%, var(--secondary-500) 100%);
+    color: white;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    user-select: none;
+    background: white;
+    color: var(--primary-600);
+    border: 2px solid var(--primary-500);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-500);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+.btn-edit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    user-select: none;
+    background: linear-gradient(135deg, var(--warning-500) 0%, var(--warning-400) 100%);
+    color: white;
+}
+
+.btn-edit:hover {
+    background: linear-gradient(135deg, var(--warning-600) 0%, var(--warning-500) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-add {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    user-select: none;
+    background: linear-gradient(135deg, var(--success-500) 0%, var(--success-400) 100%);
+    color: white;
+    margin-top: var(--space-4);
+}
+
+.btn-add:hover {
+    background: linear-gradient(135deg, var(--success-600) 0%, var(--success-500) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.refresh-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2);
+    border-radius: 50%;
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    user-select: none;
+    background: transparent;
+    color: var(--gray-500);
+    border: 1px solid var(--gray-300);
+    aspect-ratio: 1;
+}
+
+.refresh-btn:hover {
+    background: var(--gray-100);
+    border-color: var(--gray-400);
+    transform: rotate(180deg);
+    color: var(--gray-700);
+}
+
+/* Button Actions */
+.edit-actions {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    justify-content: flex-end;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .btn--fab {
+        bottom: var(--space-4);
+        right: var(--space-4);
+        padding: var(--space-4);
+    }
+    
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-group .btn {
+        border-radius: 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .btn-group .btn:first-child {
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    
+    .btn-group .btn:last-child {
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        border-bottom: none;
+    }
+    
+    .edit-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .edit-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        font-size: var(--text-sm);
+        padding: var(--space-3) var(--space-4);
+    }
+    
+    .btn--large {
+        font-size: var(--text-base);
+        padding: var(--space-3) var(--space-5);
+    }
+    
+    .btn--extra-large {
+        font-size: var(--text-lg);
+        padding: var(--space-4) var(--space-6);
+    }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+    .btn--secondary {
+        background: var(--gray-800);
+        color: var(--primary-400);
+        border-color: var(--primary-400);
+    }
+    
+    .btn--secondary:hover {
+        background: var(--primary-400);
+        color: var(--gray-900);
+    }
+    
+    .btn--ghost {
+        color: var(--gray-300);
+        border-color: var(--gray-600);
+    }
+    
+    .btn--ghost:hover {
+        background: var(--gray-700);
+        border-color: var(--gray-500);
+    }
+    
+    .btn--text {
+        color: var(--primary-400);
+    }
+    
+    .btn--text:hover {
+        background: var(--gray-800);
+        color: var(--primary-300);
+    }
+}
+
+/* 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+    .btn {
+        border: 2px solid;
+        font-weight: var(--font-bold);
+    }
+    
+    .btn--primary {
+        background: var(--gray-900);
+        border-color: var(--gray-900);
+    }
+    
+    .btn--secondary {
+        background: white;
+        color: var(--gray-900);
+        border-color: var(--gray-900);
+    }
+    
+    .btn--secondary:hover {
+        background: var(--gray-900);
+        color: white;
+    }
+}

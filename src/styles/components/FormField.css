@@ -1,0 +1,471 @@
+/* FormField 컴포넌트 스타일 */
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+.form-field:last-child {
+    margin-bottom: 0;
+}
+
+/* Form Field Variants */
+.form-field--default {
+    /* 기본 스타일 */
+}
+
+.form-field--floating {
+    position: relative;
+}
+
+.form-field--inline {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.form-field--inline .form-field__label {
+    margin-bottom: 0;
+    min-width: 120px;
+    flex-shrink: 0;
+}
+
+/* Form Field Sizes */
+.form-field--small {
+    gap: var(--space-1);
+    margin-bottom: var(--space-3);
+}
+
+.form-field--medium {
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+.form-field--large {
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+}
+
+/* Form Field States */
+.form-field--error .form-field__input {
+    border-color: var(--error-500);
+    background: var(--error-50);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-field--error .form-field__label {
+    color: var(--error-600);
+}
+
+.form-field--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.form-field--disabled .form-field__input {
+    background: var(--gray-100);
+    cursor: not-allowed;
+}
+
+/* Form Label */
+.form-field__label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--gray-700);
+    font-family: var(--font-primary);
+    line-height: 1.4;
+}
+
+.form-field--small .form-field__label {
+    font-size: var(--text-xs);
+}
+
+.form-field--large .form-field__label {
+    font-size: var(--text-base);
+}
+
+.form-field__required {
+    color: var(--error-500);
+    margin-left: var(--space-1);
+    font-weight: var(--font-bold);
+}
+
+/* Input Wrapper */
+.form-field__input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.form-field--icon-left .form-field__input-wrapper {
+    position: relative;
+}
+
+.form-field--icon-right .form-field__input-wrapper {
+    position: relative;
+}
+
+/* Form Input */
+.form-field__input {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-base);
+    font-family: var(--font-primary);
+    font-weight: var(--font-normal);
+    color: var(--gray-800);
+    background: var(--gray-50);
+    transition: all var(--transition-normal);
+    line-height: 1.5;
+}
+
+.form-field__input::placeholder {
+    color: var(--gray-400);
+    font-weight: var(--font-normal);
+}
+
+.form-field__input:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    transform: translateY(-1px);
+}
+
+.form-field__input:disabled {
+    background: var(--gray-100);
+    color: var(--gray-500);
+    cursor: not-allowed;
+}
+
+/* Size Variations */
+.form-field--small .form-field__input {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    border-radius: var(--radius-md);
+}
+
+.form-field--large .form-field__input {
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--text-lg);
+    border-radius: var(--radius-xl);
+}
+
+/* Textarea */
+.form-field__input[type="textarea"],
+textarea.form-field__input {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.form-field--small textarea.form-field__input {
+    min-height: 80px;
+}
+
+.form-field--large textarea.form-field__input {
+    min-height: 160px;
+}
+
+/* Select */
+select.form-field__input {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    background-size: 20px;
+    padding-right: var(--space-10);
+    appearance: none;
+}
+
+select.form-field__input option {
+    padding: var(--space-2);
+    background: white;
+    color: var(--gray-800);
+}
+
+/* Icon Styles */
+.form-field__icon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-400);
+    pointer-events: none;
+    z-index: 1;
+    transition: color var(--transition-fast);
+}
+
+.form-field__icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.form-field--small .form-field__icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.form-field--large .form-field__icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.form-field__icon--left {
+    left: var(--space-3);
+}
+
+.form-field__icon--right {
+    right: var(--space-3);
+}
+
+.form-field--small .form-field__icon--left {
+    left: var(--space-2);
+}
+
+.form-field--small .form-field__icon--right {
+    right: var(--space-2);
+}
+
+.form-field--large .form-field__icon--left {
+    left: var(--space-4);
+}
+
+.form-field--large .form-field__icon--right {
+    right: var(--space-4);
+}
+
+/* Input with icon padding */
+.form-field__input--with-icon {
+    padding-left: var(--space-10);
+}
+
+.form-field--icon-right .form-field__input--with-icon {
+    padding-left: var(--space-4);
+    padding-right: var(--space-10);
+}
+
+.form-field--small .form-field__input--with-icon {
+    padding-left: var(--space-8);
+}
+
+.form-field--small.form-field--icon-right .form-field__input--with-icon {
+    padding-left: var(--space-3);
+    padding-right: var(--space-8);
+}
+
+.form-field--large .form-field__input--with-icon {
+    padding-left: var(--space-12);
+}
+
+.form-field--large.form-field--icon-right .form-field__input--with-icon {
+    padding-left: var(--space-5);
+    padding-right: var(--space-12);
+}
+
+/* Focus state for icons */
+.form-field__input:focus + .form-field__icon,
+.form-field__input:focus ~ .form-field__icon {
+    color: var(--primary-500);
+}
+
+/* Error and Help Text */
+.form-field__error {
+    font-size: var(--text-sm);
+    color: var(--error-600);
+    font-weight: var(--font-medium);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.form-field__help {
+    font-size: var(--text-sm);
+    color: var(--gray-500);
+    font-weight: var(--font-normal);
+    line-height: 1.4;
+}
+
+.form-field--small .form-field__error,
+.form-field--small .form-field__help {
+    font-size: var(--text-xs);
+}
+
+/* Floating Label Variant */
+.form-field--floating .form-field__label {
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-4);
+    background: white;
+    padding: 0 var(--space-1);
+    font-size: var(--text-base);
+    color: var(--gray-500);
+    pointer-events: none;
+    transition: all var(--transition-normal);
+    z-index: 1;
+}
+
+.form-field--floating .form-field__input:focus + .form-field__label,
+.form-field--floating .form-field__input:not(:placeholder-shown) + .form-field__label {
+    top: -8px;
+    left: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--primary-600);
+    font-weight: var(--font-semibold);
+}
+
+.form-field--floating.form-field--error .form-field__input:focus + .form-field__label,
+.form-field--floating.form-field--error .form-field__input:not(:placeholder-shown) + .form-field__label {
+    color: var(--error-600);
+}
+
+/* File Input */
+input[type="file"].form-field__input {
+    padding: var(--space-2);
+    border: 2px dashed var(--gray-300);
+    background: var(--gray-50);
+    cursor: pointer;
+}
+
+input[type="file"].form-field__input:hover {
+    border-color: var(--primary-400);
+    background: var(--primary-50);
+}
+
+input[type="file"].form-field__input:focus {
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Checkbox and Radio */
+.form-field--checkbox,
+.form-field--radio {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.form-field--checkbox .form-field__input,
+.form-field--radio .form-field__input {
+    width: auto;
+    margin: 0;
+}
+
+.form-field--checkbox .form-field__label,
+.form-field--radio .form-field__label {
+    margin-bottom: 0;
+    cursor: pointer;
+    order: 2;
+}
+
+/* Custom Checkbox and Radio */
+.form-field__input[type="checkbox"],
+.form-field__input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-500);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .form-field--inline {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-2);
+    }
+    
+    .form-field--inline .form-field__label {
+        min-width: auto;
+    }
+    
+    .form-field__input {
+        font-size: var(--text-base);
+    }
+    
+    .form-field--large .form-field__input {
+        font-size: var(--text-base);
+        padding: var(--space-3) var(--space-4);
+    }
+}
+
+@media (max-width: 480px) {
+    .form-field__input {
+        padding: var(--space-3);
+        font-size: var(--text-sm);
+    }
+    
+    .form-field--small .form-field__input {
+        padding: var(--space-2);
+    }
+    
+    .form-field__icon svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .form-field__input--with-icon {
+        padding-left: var(--space-8);
+    }
+    
+    .form-field--icon-right .form-field__input--with-icon {
+        padding-left: var(--space-3);
+        padding-right: var(--space-8);
+    }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+    .form-field__label {
+        color: var(--gray-300);
+    }
+    
+    .form-field__input {
+        background: var(--gray-800);
+        border-color: var(--gray-600);
+        color: var(--gray-100);
+    }
+    
+    .form-field__input:focus {
+        background: var(--gray-700);
+        border-color: var(--primary-400);
+    }
+    
+    .form-field__input::placeholder {
+        color: var(--gray-500);
+    }
+    
+    .form-field__help {
+        color: var(--gray-400);
+    }
+    
+    .form-field--floating .form-field__label {
+        background: var(--gray-800);
+    }
+}
+
+/* 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+    .form-field__input {
+        border: 2px solid var(--gray-900);
+        background: white;
+        color: var(--gray-900);
+    }
+    
+    .form-field__input:focus {
+        border-color: var(--primary-600);
+        box-shadow: 0 0 0 3px var(--primary-600);
+    }
+    
+    .form-field__label {
+        color: var(--gray-900);
+        font-weight: var(--font-bold);
+    }
+    
+    .form-field__error {
+        color: var(--error-700);
+        font-weight: var(--font-bold);
+    }
+}

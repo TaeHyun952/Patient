@@ -1,0 +1,573 @@
+/* Signup 페이지 전용 스타일 */
+
+.signup {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8) 0;
+    background: linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%);
+}
+
+.signup .container {
+    max-width: 600px;
+    width: 100%;
+}
+
+.signup h1 {
+    text-align: center;
+    margin-bottom: var(--space-10);
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: var(--font-extrabold);
+    color: var(--gray-900);
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 회원가입 폼 컨테이너 */
+.signup .form {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: var(--space-10);
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--gray-200);
+    position: relative;
+}
+
+.signup .form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-500), var(--secondary-500));
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+}
+
+/* 폼 그룹 */
+.signup .form-group {
+    margin-bottom: var(--space-6);
+}
+
+.signup .form-group:last-of-type {
+    margin-bottom: var(--space-8);
+}
+
+.signup .form-group label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--gray-700);
+    margin-bottom: var(--space-2);
+    font-family: var(--font-primary);
+}
+
+.signup .form-group input,
+.signup .form-group select {
+    width: 100%;
+    padding: var(--space-4) var(--space-5);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-base);
+    font-family: var(--font-primary);
+    transition: all var(--transition-normal);
+    background: var(--gray-50);
+    color: var(--gray-800);
+}
+
+.signup .form-group input:focus,
+.signup .form-group select:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    transform: translateY(-2px);
+}
+
+.signup .form-group input::placeholder {
+    color: var(--gray-400);
+    font-weight: var(--font-normal);
+}
+
+.signup .form-group select {
+    cursor: pointer;
+}
+
+.signup .form-group select option {
+    padding: var(--space-2);
+}
+
+.signup .form-group small {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--gray-500);
+    font-style: italic;
+}
+
+/* 파일 업로드 영역 */
+.file-upload-area {
+    border: 2px dashed var(--gray-300);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    text-align: center;
+    background: var(--gray-50);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.file-upload-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.file-upload-area:hover {
+    border-color: var(--primary-400);
+    background: var(--primary-50);
+    transform: translateY(-2px);
+}
+
+.file-upload-area:hover::before {
+    left: 100%;
+}
+
+.file-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    cursor: pointer;
+    color: var(--gray-600);
+    font-weight: var(--font-medium);
+    transition: all var(--transition-normal);
+}
+
+.file-upload-label:hover {
+    color: var(--primary-600);
+}
+
+.file-upload-label svg {
+    color: var(--gray-400);
+    transition: all var(--transition-normal);
+}
+
+.file-upload-area:hover .file-upload-label svg {
+    color: var(--primary-500);
+    transform: scale(1.1);
+}
+
+.file-upload-label span {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+}
+
+.file-upload-label small {
+    font-size: var(--text-sm);
+    color: var(--gray-500);
+    margin-top: 0;
+}
+
+.uploaded-file-info {
+    margin-top: var(--space-4);
+    padding: var(--space-3);
+    background: var(--success-50);
+    border: 1px solid var(--success-200);
+    border-radius: var(--radius-md);
+    color: var(--success-700);
+}
+
+.uploaded-file-info p {
+    margin: 0;
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+}
+
+/* 회원가입 버튼 */
+.signup .btn-primary {
+    width: 100%;
+    padding: var(--space-4) var(--space-6);
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-primary);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.signup .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.signup .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+.signup .btn-primary:hover::before {
+    left: 100%;
+}
+
+.signup .btn-primary:active {
+    transform: translateY(0);
+}
+
+/* 로그인 링크 */
+.login-link {
+    margin-top: var(--space-8);
+    text-align: center;
+    padding: var(--space-6);
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+}
+
+.login-link p {
+    font-size: var(--text-base);
+    color: var(--gray-600);
+    margin: 0;
+}
+
+.login-link a {
+    color: var(--primary-600);
+    text-decoration: none;
+    font-weight: var(--font-semibold);
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.login-link a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-600);
+    transition: width var(--transition-normal);
+}
+
+.login-link a:hover {
+    color: var(--primary-700);
+}
+
+.login-link a:hover::after {
+    width: 100%;
+}
+
+/* 자격증 검증 페이지 */
+.signup.verification {
+    background: linear-gradient(135deg, var(--success-50) 0%, var(--primary-50) 100%);
+}
+
+.verification h1 {
+    background: linear-gradient(135deg, var(--success-600) 0%, var(--primary-600) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.verification-status {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: var(--space-10);
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--gray-200);
+    position: relative;
+}
+
+.verification-status::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--success-500), var(--primary-500));
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-6);
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+    margin-bottom: var(--space-6);
+}
+
+.status-label {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--gray-700);
+}
+
+.status-value {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+}
+
+.status-value.pending {
+    color: var(--warning-600);
+}
+
+.status-value.approved {
+    color: var(--success-600);
+}
+
+.status-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.status-icon.pending {
+    color: var(--warning-500);
+    animation: pulse 2s infinite;
+}
+
+.status-icon.approved {
+    color: var(--success-500);
+}
+
+/* 업로드된 파일들 */
+.uploaded-files {
+    margin-bottom: var(--space-8);
+}
+
+.uploaded-files h3 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--gray-800);
+    margin-bottom: var(--space-4);
+}
+
+.file-preview {
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    border: 1px solid var(--gray-200);
+}
+
+.file-info h4 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--gray-800);
+    margin-bottom: var(--space-3);
+}
+
+.file-info p {
+    font-size: var(--text-base);
+    color: var(--gray-600);
+    margin-bottom: var(--space-2);
+}
+
+.file-info p:last-child {
+    margin-bottom: 0;
+}
+
+/* 검증 액션 버튼들 */
+.verification-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+}
+
+.verification-actions .btn-secondary {
+    background: var(--gray-100);
+    color: var(--gray-700);
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    font-family: var(--font-primary);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+}
+
+.verification-actions .btn-secondary:hover {
+    background: var(--gray-200);
+    border-color: var(--gray-400);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.verification-actions .btn-primary {
+    background: linear-gradient(135deg, var(--success-500) 0%, var(--primary-500) 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-primary);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+}
+
+.verification-actions .btn-primary:hover {
+    background: linear-gradient(135deg, var(--success-600) 0%, var(--primary-600) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* 로딩 상태 */
+.signup-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.signup-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: var(--space-4);
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .signup {
+        padding: var(--space-6) 0;
+    }
+    
+    .signup .container {
+        max-width: 100%;
+        padding: 0 var(--space-4);
+    }
+    
+    .signup h1 {
+        font-size: var(--text-3xl);
+        margin-bottom: var(--space-8);
+    }
+    
+    .signup .form,
+    .verification-status {
+        padding: var(--space-8);
+        border-radius: var(--radius-xl);
+    }
+    
+    .file-upload-area {
+        padding: var(--space-6);
+    }
+    
+    .status-item {
+        flex-direction: column;
+        gap: var(--space-3);
+        text-align: center;
+    }
+    
+    .verification-actions {
+        flex-direction: column;
+    }
+    
+    .verification-actions button,
+    .verification-actions a {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .signup {
+        padding: var(--space-4) 0;
+    }
+    
+    .signup h1 {
+        font-size: var(--text-2xl);
+        margin-bottom: var(--space-6);
+    }
+    
+    .signup .form,
+    .verification-status {
+        padding: var(--space-6);
+        border-radius: var(--radius-lg);
+    }
+    
+    .signup .form-group {
+        margin-bottom: var(--space-5);
+    }
+    
+    .signup .form-group input,
+    .signup .form-group select {
+        padding: var(--space-3) var(--space-4);
+        font-size: var(--text-sm);
+    }
+    
+    .file-upload-area {
+        padding: var(--space-4);
+    }
+    
+    .file-upload-label span {
+        font-size: var(--text-sm);
+    }
+    
+    .signup .btn-primary {
+        padding: var(--space-3) var(--space-5);
+        font-size: var(--text-base);
+    }
+    
+    .login-link {
+        padding: var(--space-4);
+        margin-top: var(--space-6);
+    }
+    
+    .login-link p {
+        font-size: var(--text-sm);
+    }
+    
+    .status-label,
+    .status-value {
+        font-size: var(--text-base);
+    }
+    
+    .file-info h4 {
+        font-size: var(--text-base);
+    }
+    
+    .file-info p {
+        font-size: var(--text-sm);
+    }
+}

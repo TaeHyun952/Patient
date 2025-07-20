@@ -1,0 +1,113 @@
+/* CSS Fallbacks for production environments */
+
+/* Ensure CSS variables are available even if not loaded */
+:root {
+  /* Backup color definitions */
+  color: #1f2937;
+  background-color: #f9fafb;
+}
+
+/* Fallback styles for critical elements */
+.navbar {
+  background: #4f46e5 !important;
+  color: white !important;
+  padding: 1rem !important;
+}
+
+.profile-header.modern-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  padding: 2rem !important;
+}
+
+.stats-card {
+  background: white !important;
+  border-radius: 1rem !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
+}
+
+/* Critical text visibility fixes */
+.stat-label {
+  color: #1a202c !important;
+  font-size: 0.875rem !important;
+  font-weight: 700 !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.stat-value {
+  color: #1a202c !important;
+  font-size: 1.875rem !important;
+  font-weight: 800 !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.stats-content {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.stats-header {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.stats-trend {
+  color: #1a202c !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.modern-activity {
+  background: white !important;
+  border-radius: 1rem !important;
+  padding: 1.25rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Font fallbacks */
+* {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* Ensure minimum spacing */
+.profile-sections {
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+/* Critical layout fixes */
+.modern-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 2rem !important;
+}
+
+.profile-photo-section-modern {
+  width: 300px !important;
+  text-align: center !important;
+}
+
+.profile-summary-modern {
+  flex: 1 !important;
+  padding-left: 1.5rem !important;
+}
+
+/* Animation fallbacks */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

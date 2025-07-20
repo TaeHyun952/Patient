@@ -1,0 +1,271 @@
+.interpreter-list {
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.back-button {
+  margin-bottom: 1rem;
+}
+
+.header-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+}
+
+.header-content p {
+  color: #718096;
+  font-size: 1rem;
+}
+
+.hospital-info-card {
+  margin-bottom: 2rem;
+}
+
+.hospital-summary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+}
+
+.hospital-basic-info h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.hospital-basic-info p {
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+.hospital-stats {
+  display: flex;
+  gap: 2rem;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.interpreters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+.interpreter-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.interpreter-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.interpreter-header {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+
+.interpreter-photo {
+  flex-shrink: 0;
+}
+
+.interpreter-photo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e2e8f0;
+}
+
+.interpreter-basic {
+  flex-grow: 1;
+}
+
+.interpreter-basic h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+}
+
+.languages {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4299e1;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #f6ad55;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.review-count {
+  color: #718096;
+  font-weight: 400;
+}
+
+.interpreter-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.hourly-rate {
+  font-weight: 600;
+  color: #1a202c;
+  font-size: 0.875rem;
+}
+
+.interpreter-details {
+  margin-bottom: 1.5rem;
+}
+
+.experience {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #718096;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.experience svg {
+  color: #4299e1;
+}
+
+.specializations,
+.certifications,
+.recent-reviews {
+  margin-bottom: 1rem;
+}
+
+.specializations h4,
+.certifications h4,
+.recent-reviews h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+}
+
+.spec-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cert-item {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.more-certs {
+  font-size: 0.75rem;
+  color: #4299e1;
+  font-weight: 500;
+}
+
+.review-preview {
+  background-color: #f7fafc;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border-left: 3px solid #4299e1;
+}
+
+.review-item {
+  font-size: 0.875rem;
+}
+
+.review-rating {
+  display: flex;
+  gap: 0.125rem;
+  margin-bottom: 0.5rem;
+  color: #f6ad55;
+}
+
+.review-item p {
+  color: #718096;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.interpreter-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.interpreter-actions button {
+  flex: 1;
+  max-width: 120px;
+}
+
+@media (max-width: 768px) {
+  .interpreter-list {
+    padding: 1rem;
+  }
+  
+  .interpreters-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .interpreter-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .interpreter-status {
+    align-items: center;
+  }
+  
+  .hospital-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .interpreter-actions {
+    flex-direction: column;
+  }
+  
+  .interpreter-actions button {
+    max-width: none;
+  }
+}

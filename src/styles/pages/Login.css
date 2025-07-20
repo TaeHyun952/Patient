@@ -1,0 +1,382 @@
+/* Login 페이지 전용 스타일 */
+
+.login {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8) 0;
+    background: linear-gradient(135deg, var(--primary-50) 0%, var(--gray-50) 100%);
+}
+
+.login .container {
+    max-width: 500px;
+    width: 100%;
+}
+
+.login h1 {
+    text-align: center;
+    margin-bottom: var(--space-10);
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: var(--font-extrabold);
+    color: var(--gray-900);
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 로그인 폼 컨테이너 */
+.login .form {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: var(--space-10);
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--gray-200);
+    position: relative;
+}
+
+.login .form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-500), var(--secondary-500));
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+}
+
+/* 폼 그룹 */
+.login .form-group {
+    margin-bottom: var(--space-6);
+}
+
+.login .form-group:last-of-type {
+    margin-bottom: var(--space-8);
+}
+
+.login .form-group label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--gray-700);
+    margin-bottom: var(--space-2);
+    font-family: var(--font-primary);
+}
+
+.login .form-group input {
+    width: 100%;
+    padding: var(--space-4) var(--space-5);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-base);
+    font-family: var(--font-primary);
+    transition: all var(--transition-normal);
+    background: var(--gray-50);
+    color: var(--gray-800);
+}
+
+.login .form-group input:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    transform: translateY(-2px);
+}
+
+.login .form-group input::placeholder {
+    color: var(--gray-400);
+    font-weight: var(--font-normal);
+}
+
+/* 로그인 버튼 */
+.login .btn-primary {
+    width: 100%;
+    padding: var(--space-4) var(--space-6);
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    font-family: var(--font-primary);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.login .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.login .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+.login .btn-primary:hover::before {
+    left: 100%;
+}
+
+.login .btn-primary:active {
+    transform: translateY(0);
+}
+
+/* 회원가입 링크 */
+.signup-link {
+    margin-top: var(--space-8);
+    text-align: center;
+    padding: var(--space-6);
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+}
+
+.signup-link p {
+    font-size: var(--text-base);
+    color: var(--gray-600);
+    margin: 0;
+}
+
+.signup-link a {
+    color: var(--primary-600);
+    text-decoration: none;
+    font-weight: var(--font-semibold);
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.signup-link a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-600);
+    transition: width var(--transition-normal);
+}
+
+.signup-link a:hover {
+    color: var(--primary-700);
+}
+
+.signup-link a:hover::after {
+    width: 100%;
+}
+
+/* 로그인 상태 메시지 */
+.login-status {
+    margin-top: var(--space-6);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+}
+
+.login-status.success {
+    background: var(--success-50);
+    color: var(--success-700);
+    border: 1px solid var(--success-200);
+}
+
+.login-status.error {
+    background: var(--error-50);
+    color: var(--error-700);
+    border: 1px solid var(--error-200);
+}
+
+/* 소셜 로그인 섹션 (확장 가능) */
+.social-login {
+    margin-top: var(--space-8);
+}
+
+.social-login-divider {
+    display: flex;
+    align-items: center;
+    margin: var(--space-6) 0;
+}
+
+.social-login-divider::before,
+.social-login-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gray-300);
+}
+
+.social-login-divider span {
+    padding: 0 var(--space-4);
+    color: var(--gray-500);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+}
+
+.social-login-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.social-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    background: white;
+    color: var(--gray-700);
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+}
+
+.social-login-btn:hover {
+    border-color: var(--gray-300);
+    background: var(--gray-50);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* 로딩 상태 */
+.login-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.login-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: var(--space-4);
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .login {
+        padding: var(--space-6) 0;
+    }
+    
+    .login .container {
+        max-width: 100%;
+        padding: 0 var(--space-4);
+    }
+    
+    .login h1 {
+        font-size: var(--text-3xl);
+        margin-bottom: var(--space-8);
+    }
+    
+    .login .form {
+        padding: var(--space-8);
+        border-radius: var(--radius-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .login {
+        padding: var(--space-4) 0;
+    }
+    
+    .login h1 {
+        font-size: var(--text-2xl);
+        margin-bottom: var(--space-6);
+    }
+    
+    .login .form {
+        padding: var(--space-6);
+        border-radius: var(--radius-lg);
+    }
+    
+    .login .form-group {
+        margin-bottom: var(--space-5);
+    }
+    
+    .login .form-group input {
+        padding: var(--space-3) var(--space-4);
+        font-size: var(--text-sm);
+    }
+    
+    .login .btn-primary {
+        padding: var(--space-3) var(--space-5);
+        font-size: var(--text-base);
+    }
+    
+    .signup-link {
+        padding: var(--space-4);
+        margin-top: var(--space-6);
+    }
+    
+    .signup-link p {
+        font-size: var(--text-sm);
+    }
+}
+
+/* 다크 모드 지원 (선택적) */
+@media (prefers-color-scheme: dark) {
+    .login {
+        background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
+    }
+    
+    .login h1 {
+        color: white;
+    }
+    
+    .login .form {
+        background: var(--gray-800);
+        border-color: var(--gray-700);
+    }
+    
+    .login .form-group label {
+        color: var(--gray-300);
+    }
+    
+    .login .form-group input {
+        background: var(--gray-700);
+        border-color: var(--gray-600);
+        color: white;
+    }
+    
+    .login .form-group input:focus {
+        background: var(--gray-600);
+        border-color: var(--primary-400);
+    }
+    
+    .signup-link {
+        background: var(--gray-700);
+        border-color: var(--gray-600);
+    }
+    
+    .signup-link p {
+        color: var(--gray-300);
+    }
+}

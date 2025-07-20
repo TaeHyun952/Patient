@@ -1,0 +1,218 @@
+/* WriteReview 페이지 전용 스타일 */
+
+.write-review {
+    padding: var(--space-6);
+    min-height: 100vh;
+    background: var(--gray-50);
+}
+
+.write-review .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.page-header h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-bold);
+    color: var(--gray-900);
+    margin-bottom: var(--space-3);
+}
+
+.page-header p {
+    font-size: var(--text-lg);
+    color: var(--gray-600);
+    font-weight: var(--font-medium);
+}
+
+.review-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+/* 서비스 정보 카드 */
+.service-info-card h3 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--gray-800);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 2px solid var(--primary-100);
+}
+
+.service-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+}
+
+.detail-item .label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--gray-600);
+    min-width: 100px;
+}
+
+.detail-item .value {
+    font-size: var(--text-base);
+    color: var(--gray-800);
+    font-weight: var(--font-medium);
+}
+
+/* 리뷰 폼 카드 */
+.review-form-card form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.rating-section h3 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--gray-800);
+    margin-bottom: var(--space-4);
+}
+
+.star-rating {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+}
+
+.star {
+    background: none;
+    border: none;
+    font-size: var(--text-4xl);
+    color: var(--gray-300);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+}
+
+.star:hover {
+    color: var(--warning-400);
+    transform: scale(1.1);
+}
+
+.star.active {
+    color: var(--warning-500);
+}
+
+.rating-text {
+    text-align: center;
+    margin-bottom: var(--space-4);
+}
+
+.rating-value {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--primary-600);
+    background: var(--primary-50);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    display: inline-block;
+}
+
+/* 리뷰 텍스트 섹션 */
+.review-text-section {
+    position: relative;
+}
+
+.char-count {
+    text-align: right;
+    font-size: var(--text-sm);
+    color: var(--gray-500);
+    margin-top: var(--space-2);
+}
+
+/* 폼 액션 */
+.form-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: flex-end;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--gray-200);
+}
+
+.form-actions button {
+    min-width: 120px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .write-review {
+        padding: var(--space-4);
+    }
+    
+    .page-header h1 {
+        font-size: var(--text-3xl);
+    }
+    
+    .page-header p {
+        font-size: var(--text-base);
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+    }
+    
+    .detail-item .label {
+        min-width: auto;
+        font-size: var(--text-xs);
+        color: var(--gray-500);
+    }
+    
+    .star-rating {
+        justify-content: center;
+    }
+    
+    .star {
+        font-size: var(--text-3xl);
+        padding: var(--space-1);
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+        gap: var(--space-3);
+    }
+    
+    .form-actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header h1 {
+        font-size: var(--text-2xl);
+    }
+    
+    .service-details {
+        gap: var(--space-2);
+    }
+    
+    .detail-item {
+        padding: var(--space-2);
+    }
+    
+    .star {
+        font-size: var(--text-2xl);
+    }
+}
