@@ -29,7 +29,7 @@ i18n
           procedures: {
             rhinoplasty: {
               name: "Rhinoplasty",
-              description: "Nose bridge, nose tip, alar reduction surgery"
+              description: "Nose bridge, nose tip, alar reduction"
             },
             blepharoplasty: {
               name: "Blepharoplasty",
@@ -38,6 +38,42 @@ i18n
             botox: {
               name: "Botox",
               description: "Wrinkle improvement, jawline botox"
+            },
+            filler: {
+              name: "Filler",
+              description: "Volume enhancement, lip filler, smile lines"
+            },
+            lasik: {
+              name: "LASIK/LASEK",
+              description: "Vision correction surgery"
+            },
+            implant: {
+              name: "Dental Implant",
+              description: "Artificial tooth root placement"
+            },
+            orthodontics: {
+              name: "Orthodontics",
+              description: "Invisalign, metal braces"
+            },
+            laserToning: {
+              name: "Laser Toning",
+              description: "Melasma, freckle removal"
+            },
+            breastAugmentation: {
+              name: "Breast Augmentation",
+              description: "Breast enlargement, breast reduction"
+            },
+            liposuction: {
+              name: "Liposuction",
+              description: "Abdomen, thigh, arm fat removal"
+            },
+            cataract: {
+              name: "Cataract Surgery",
+              description: "Intraocular lens implantation"
+            },
+            healthCheckup: {
+              name: "Health Check-up",
+              description: "Comprehensive health screening, cancer screening"
             }
           }
         }
@@ -62,6 +98,42 @@ i18n
             botox: {
               name: "보톡스",
               description: "주름개선, 턱라인 보톡스"
+            },
+            filler: {
+              name: "필러",
+              description: "볼륨개선, 입술필러, 팔자주름"
+            },
+            lasik: {
+              name: "라식/라섹",
+              description: "시력교정술"
+            },
+            implant: {
+              name: "임플란트",
+              description: "치아 임플란트 시술"
+            },
+            orthodontics: {
+              name: "치아교정",
+              description: "투명교정, 메탈교정"
+            },
+            laserToning: {
+              name: "레이저토닝",
+              description: "기미, 잡티 제거"
+            },
+            breastAugmentation: {
+              name: "가슴성형",
+              description: "가슴확대, 가슴축소술"
+            },
+            liposuction: {
+              name: "지방흡입",
+              description: "복부, 허벅지, 팔뚝 지방흡입"
+            },
+            cataract: {
+              name: "백내장 수술",
+              description: "인공수정체 삽입술"
+            },
+            healthCheckup: {
+              name: "건강검진",
+              description: "종합건강검진, 암검진"
             }
           }
         }

@@ -13,34 +13,52 @@ const Dashboard = () => {
 
   const procedures = [
     {
-      id: 1,
-      key: 'rhinoplasty',
-      category: 'plastic',
-      department: '성형외과',
-      icon: <Smile size={32} />,
-      estimatedTime: '2-3시간',
-      price: '300만원~',
-      popularity: 95
+      id: 1, key: 'rhinoplasty', category: 'plastic', department: '성형외과',
+      icon: <Smile size={32} />, estimatedTime: '2-3시간', price: '300만원~', popularity: 95
     },
     {
-      id: 2,
-      key: 'blepharoplasty',
-      category: 'plastic',
-      department: '성형외과',
-      icon: <Eye size={32} />,
-      estimatedTime: '1-2시간',
-      price: '150만원~',
-      popularity: 92
+      id: 2, key: 'blepharoplasty', category: 'plastic', department: '성형외과',
+      icon: <Eye size={32} />, estimatedTime: '1-2시간', price: '150만원~', popularity: 92
     },
     {
-      id: 3,
-      key: 'botox',
-      category: 'derma',
-      department: '피부과',
-      icon: <Shield size={32} />,
-      estimatedTime: '30분',
-      price: '20만원~',
-      popularity: 88
+      id: 3, key: 'botox', category: 'derma', department: '피부과',
+      icon: <Shield size={32} />, estimatedTime: '30분', price: '20만원~', popularity: 88
+    },
+    {
+      id: 4, key: 'filler', category: 'derma', department: '피부과',
+      icon: <Heart size={32} />, estimatedTime: '30분-1시간', price: '30만원~', popularity: 85
+    },
+    {
+      id: 5, key: 'lasik', category: 'eye', department: '안과',
+      icon: <Eye size={32} />, estimatedTime: '30분-1시간', price: '150만원~', popularity: 83
+    },
+    {
+      id: 6, key: 'implant', category: 'dental', department: '치과',
+      icon: <Smile size={32} />, estimatedTime: '1-2시간', price: '120만원~', popularity: 80
+    },
+    {
+      id: 7, key: 'orthodontics', category: 'dental', department: '치과',
+      icon: <Smile size={32} />, estimatedTime: '1시간', price: '400만원~', popularity: 78
+    },
+    {
+      id: 8, key: 'laserToning', category: 'derma', department: '피부과',
+      icon: <Zap size={32} />, estimatedTime: '30분', price: '15만원~', popularity: 75
+    },
+    {
+      id: 9, key: 'breastAugmentation', category: 'plastic', department: '성형외과',
+      icon: <Heart size={32} />, estimatedTime: '2-3시간', price: '500만원~', popularity: 72
+    },
+    {
+      id: 10, key: 'liposuction', category: 'plastic', department: '성형외과',
+      icon: <Zap size={32} />, estimatedTime: '2-4시간', price: '400만원~', popularity: 70
+    },
+    {
+      id: 11, key: 'cataract', category: 'eye', department: '안과',
+      icon: <Eye size={32} />, estimatedTime: '30분-1시간', price: '200만원~', popularity: 68
+    },
+    {
+      id: 12, key: 'healthCheckup', category: 'internal', department: '내과',
+      icon: <Heart size={32} />, estimatedTime: '2-3시간', price: '50만원~', popularity: 65
     }
   ];
 
