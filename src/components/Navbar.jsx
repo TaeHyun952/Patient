@@ -1,9 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
 import { Home, Calendar, User, UserPlus, BarChart3, Building2 } from 'lucide-react'
 import '../styles/components/Navbar.css'
 
 const Navbar = ({ currentUser }) => {
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <nav className="navbar">
       <div className="nav-brand">
@@ -32,13 +39,30 @@ const Navbar = ({ currentUser }) => {
         </NavLink>
       </div>
       <div className="nav-user">
-        <div className="user-info">
-          <span className="user-name">{currentUser.name}</span>
-          <div className={`status-indicator ${currentUser.status}`}>
-            <span className="status-dot"></span>
-            {currentUser.status === 'active' ? '활동 중' : '비활성'}
-          </div>
+        <div className="language-selector">
+            <button 
+              onClick={() => changeLanguage('en')}
+              className={i18n.language === 'en' ? 'active' : ''}
+            >
+              EN
+            </button>
+            <span className="separator">|</span>
+            <button 
+              onClick={() => changeLanguage('ko')}
+              className={i18n.language === 'ko' ? 'active' : ''}
+            >
+              KO
+            </button>
         </div>
+        {currentUser && (
+          <div className="user-info">
+            <span className="user-name">{currentUser.name}</span>
+            <div className={`status-indicator ${currentUser.status}`}>
+              <span className="status-dot"></span>
+              {currentUser.status === 'active' ? '활동 중' : '비활성'}
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   )

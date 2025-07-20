@@ -6,17 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:vercel": "NODE_ENV=production vite build",
     "preview": "vite preview",
-    "start": "vite",
-    "clean": "if exist dist rd /s /q dist",
-    "prebuild": "npm run clean"
+    "start": "vite"
   },
   "dependencies": {
+    "i18next": "^25.3.2",
+    "i18next-browser-languagedetector": "^8.2.0",
+    "lucide-react": "^0.263.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.0",
-    "lucide-react": "^0.263.1"
+    "react-i18next": "^15.6.0",
+    "react-router-dom": "^6.8.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

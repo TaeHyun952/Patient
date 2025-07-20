@@ -486,3 +486,42 @@
         border-color: white;
     }
 }
+
+/* 언어 선택기 스타일 */
+.language-selector {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(0, 0, 0, 0.2);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+}
+
+.language-selector button {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: var(--space-1) var(--space-2);
+    font-family: var(--font-primary);
+    font-weight: var(--font-medium);
+    font-size: var(--text-sm);
+    transition: all var(--transition-fast);
+    border-radius: var(--radius-md);
+}
+
+.language-selector button:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.language-selector button.active {
+    color: white;
+    font-weight: var(--font-bold);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.language-selector .separator {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: var(--text-sm);
+}
